@@ -1,0 +1,89 @@
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
+
+body {
+  background: #ff8800;
+  background: -webkit-gradient(linear, left top, right top, from(#dd452a), to(#ff8533));
+  background: linear-gradient(to right, #dd452a, #ff8533);
+}
+
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+  padding: 2rem;
+}
+
+.form-signin {
+  width: 100%;
+}
+
+.form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.form-label-group > input,
+.form-label-group > label {
+  padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group input {
+  height: auto;
+  border-radius: 2rem;
+}
+
+.form-label-group > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  -webkit-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+}
+
+.btn-google {
+  color: white !important;
+  background-color: #ea4335 !important;
+}
+
+.btn-google:hover {
+  color: black !important;
+}
+
+.btn-facebook {
+  color: white !important;
+  background-color: #3b5998 !important;
+}
+
+.btn-facebook:hover {
+  color: black !important;
+}
+/*# sourceMappingURL=login.css.map */

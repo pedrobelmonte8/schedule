@@ -1,0 +1,6 @@
+body {
+  background: #ff8800;
+  background: -webkit-gradient(linear, left top, right top, from(#dd452a), to(#ff8533));
+  background: linear-gradient(to right, #dd452a, #ff8533);
+}
+/*# sourceMappingURL=main.css.map */
