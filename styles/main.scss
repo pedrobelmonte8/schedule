@@ -2,3 +2,46 @@ body {
     background: #ff8800;
     background: linear-gradient(to right, rgb(221, 69, 42), rgb(255, 133, 51));
 }
+
+.hoja1 {
+    height: 800px;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    background-color: rgb(245, 218, 178);
+    font-family: 'Handlee', cursive;
+    font-size: 1.2rem;
+    li {
+        list-style: none;
+        margin: 5px;
+        list-style-position: inside;
+        border-bottom: 1px solid black
+    }
+}
+
+.hoja2 {
+    height: 800px;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background-color: rgb(245, 218, 178);
+    font-family: 'Handlee', cursive;
+    font-size: 1.2rem;
+    li {
+        list-style: none;
+        margin: 5px;
+        list-style-position: inside;
+        border-bottom: 1px solid black
+    }
+}
+
+.details {
+    height: 800px;
+    background-color: rgb(30, 32, 42);
+    font-family: 'Handlee', cursive;
+    font-size: 1.2rem;
+    li {
+        list-style: none;
+        margin: 5px;
+        list-style-position: inside;
+        border-bottom: 1px solid black
+    }
+}

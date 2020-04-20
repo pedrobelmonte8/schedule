@@ -3,4 +3,50 @@ body {
   background: -webkit-gradient(linear, left top, right top, from(#dd452a), to(#ff8533));
   background: linear-gradient(to right, #dd452a, #ff8533);
 }
+
+.hoja1 {
+  height: 800px;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  background-color: #f5dab2;
+  font-family: 'Handlee', cursive;
+  font-size: 1.2rem;
+}
+
+.hoja1 li {
+  list-style: none;
+  margin: 5px;
+  list-style-position: inside;
+  border-bottom: 1px solid black;
+}
+
+.hoja2 {
+  height: 800px;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  background-color: #f5dab2;
+  font-family: 'Handlee', cursive;
+  font-size: 1.2rem;
+}
+
+.hoja2 li {
+  list-style: none;
+  margin: 5px;
+  list-style-position: inside;
+  border-bottom: 1px solid black;
+}
+
+.details {
+  height: 800px;
+  background-color: #1e202a;
+  font-family: 'Handlee', cursive;
+  font-size: 1.2rem;
+}
+
+.details li {
+  list-style: none;
+  margin: 5px;
+  list-style-position: inside;
+  border-bottom: 1px solid black;
+}
 /*# sourceMappingURL=main.css.map */
