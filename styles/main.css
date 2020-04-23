@@ -1,39 +1,87 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
 body {
   background: #ff8800;
   background: -webkit-gradient(linear, left top, right top, from(#dd452a), to(#ff8533));
   background: linear-gradient(to right, #dd452a, #ff8533);
 }
 
-.hoja1 {
+.hoja1,
+.hoja2 {
   height: 800px;
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
   background-color: #f5dab2;
   font-family: 'Handlee', cursive;
   font-size: 1.2rem;
+  overflow: scroll;
 }
 
-.hoja1 li {
+.hoja1 ul,
+.hoja2 ul {
+  overflow: hidden;
+}
+
+.hoja1 ul p,
+.hoja2 ul p {
+  margin: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hoja1 ul .iconos,
+.hoja2 ul .iconos {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.hoja1 ul i,
+.hoja2 ul i {
+  margin: 5px;
+}
+
+.hoja1 ul i:hover,
+.hoja2 ul i:hover {
+  cursor: pointer;
+}
+
+.hoja1 ul li,
+.hoja2 ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   list-style: none;
   margin: 5px;
-  list-style-position: inside;
   border-bottom: 1px solid black;
+}
+
+.hoja1 ul li:hover,
+.hoja2 ul li:hover {
+  cursor: pointer;
+}
+
+.hoja1 ul li i,
+.hoja2 ul li i {
+  float: right;
+  margin: 5px;
+}
+
+.hoja1 {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
 
 .hoja2 {
-  height: 800px;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  background-color: #f5dab2;
-  font-family: 'Handlee', cursive;
-  font-size: 1.2rem;
-}
-
-.hoja2 li {
-  list-style: none;
-  margin: 5px;
-  list-style-position: inside;
-  border-bottom: 1px solid black;
 }
 
 .details {
