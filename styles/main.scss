@@ -9,9 +9,23 @@ body {
     background: linear-gradient(to right, rgb(221, 69, 42), rgb(255, 133, 51));
 }
 
+
+/* Cabecera */
+
+.iconSettings {
+    color: white;
+}
+
+.hoja1::-webkit-scrollbar {
+    display: none;
+}
+
+.hoja2::-webkit-scrollbar {
+    display: none;
+}
+
 .hoja1,
 .hoja2 {
-    &::-webkit-scrollbar-thumb {}
     height: 800px;
     background-color: rgb(245, 218, 178);
     font-family: 'Handlee', cursive;
@@ -46,7 +60,7 @@ body {
             i {
                 float: right;
                 margin: 5px;
-                &:hover {}
+                /*    &:hover {} */
             }
         }
     }
@@ -65,8 +79,6 @@ body {
 .details {
     height: 800px;
     background-color: rgb(30, 32, 42);
-    font-family: 'Handlee', cursive;
-    font-size: 1.2rem;
     li {
         list-style: none;
         margin: 5px;
