@@ -12,7 +12,20 @@ class Model extends PDO{
         $this->conexion->exec("set names utf8");
         $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
+    public function dameEventosActual($fecha)
+    {
+        try {
+        $consulta="SELECT id, title,description,DATE_FORMAT(date,'%T'),importance,id_user from event WHERE date LIKE '%$fecha%' AND id_user='1'";
+            $result = $this->conexion->query($consulta);
+            return $result->fetchAll();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
+
 
 }
-
-?>

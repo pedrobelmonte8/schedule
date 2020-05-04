@@ -17,10 +17,52 @@ class Controller
         try {
             $params = array(
                 'actDate' => date('d-m-Y'),
-                'nextDate' => date('d-m-Y', strtotime("+1 day"))
+                'nextDate' => date('d-m-Y', strtotime("+1 day")),
+                'dataActDate' => '',
+                'dataNextDate' => ''
             );
+            $m = new Model();
+            //Cambiamos formato a la fecha para hacer la consulta
+            $newActDate = date("Y-m-d", strtotime($params["actDate"]));
+            $newNextDate = date("Y-m-d", strtotime($params["nextDate"]));
+            $arrayActDate = $m->dameEventosActual($newActDate);
+            $arrayNextDate = $m->dameEventosActual($newNextDate);
+
+            /* Llenamos la lista del dia Actual */
+            foreach ($arrayActDate as $linea) {
+                $hora1 = $linea[3];
+                $titulo1 = $linea["title"];
+                $id1 = $linea["id_user"];
+                $params["dataActDate"] .= "
+                <li class='elementList' data-id='" . $id1 . "'>
+                <p class='paragEelemntList'>" . $hora1 . " - " . $titulo1 . "</p>
+                <div class='iconos'>
+                <i class='far fa-square importancia'></i>
+                <i class='iconos fas fa-trash-alt'></i>
+                <i class='iconos fas fa-pencil-alt'></i>
+                </div>
+                </li>
+                ";
+            }
+
+             /* Llenamos la lista del dia Siguiente */
+             foreach ($arrayNextDate as $linea) {
+                $hora1 = $linea[3];
+                $titulo1 = $linea["title"];
+                $id1 = $linea["id_user"];
+                $params["dataActDate"] .= "
+                <li class='elementList' data-id='" . $id1 . "'>
+                <p class='paragEelemntList'>" . $hora1 . " - " . $titulo1 . "</p>
+                <div class='iconos'>
+                <i class='far fa-square importancia'></i>
+                <i class='iconos fas fa-trash-alt'></i>
+                <i class='iconos fas fa-pencil-alt'></i>
+                </div>
+                </li>
+                ";
+            }
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
         } catch (Error $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
         }
