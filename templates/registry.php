@@ -19,36 +19,40 @@
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Registro</h5>
-                        <form class="form-signin">
+                        <form  class="form-signin" method="POST" role="form" data-toggle="validator" id="form_register">
                             <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-                                <label for="inputEmail">Email</label>
+                                <input name="inputName" type="text" id="inputName" class="form-control" placeholder="Nombre de Usuario" required autofocus>
+                            </div>
+                            <div class="form-label-group">
+                                <input name="inputEmail" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
-                                <label for="inputPassword">Contraseña</label>
+                                <input name="inputPassword" type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
                             </div>
                             <div class="form-label-group">
-                                <input type="password" id="inputRepPassword" class="form-control" placeholder="Repetir Contraseña" required>
-                                <label for="inputRepPassword">Repetir Contraseña</label>
+                                <input name="inputRepPassword" type="password" id="inputRepPassword" class="form-control" placeholder="Repetir Contraseña" required >
                             </div>
                             <div class="form-label-group">
-                                <input type="file" id="inputRepPassword" class="form-control" placeholder="Repetir Contraseña" required>
+                                <input name="inputFile" type="file" id="inputFile" class="form-control" placeholder="Repetir Contraseña" required>
                             </div>
-                            
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrarse</button>
+
+                            <button name="inputRegister" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrarse</button>
                             <a href="index.php?ctl=login" class="d-block text-center mt-2 small">Iniciar Sesión</a>
-                            <hr class="my-4">
+                            <!--  <hr class="my-4">
                             <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Iniciar con Google</button>
-                            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i>Iniciar con Facebook</button>
-                           
+                            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i>Iniciar con Facebook</button> -->
                         </form>
                     </div>
                 </div>
+                <!-- ERRORES -->
+                <?php echo isset($params['msg']) ? $params['msg'] : "" ?>
             </div>
         </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </html>

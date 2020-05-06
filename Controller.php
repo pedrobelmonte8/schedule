@@ -1,6 +1,7 @@
 <?php
 include('libs/utils.php');
 include('clases/sesiones.php');
+include("clases/validar.php");
 include_once('Config.php');
 class Controller
 {
@@ -10,6 +11,43 @@ class Controller
     }
     public function registry()
     {
+        try {
+            $params = array(
+                'msg' => ''
+            );
+            if (isset($_POST["inputRegister"])) {
+                // Validamos con la clase validar
+                $datos = $_POST;
+                $validacion = new Validacion();
+                //COLOCAR LAS REGLAS NECESARIAS
+                $regla = array(
+                    array('name' => 'inputName', 'regla' => 'no-empty, name'),
+                    array('name' => 'inputEmail', 'regla' => 'no-empty, email'),
+                    array('name' => 'inputPassword', 'regla' => 'no-empty, password'),
+                    array('name' => 'inputRepPassword', 'regla' => 'no-empty')
+                );
+                $validaciones = $validacion->rules($regla, $datos);
+              
+                if ($validaciones == 1) {   
+                    $nombre = recoge("inputName");
+                    $email = recoge("inputEmail");
+                    $pass = recoge("inputPassword");
+                    $pass2 = recoge("inputRepPassword");
+                } else {
+                    foreach ($validaciones as $key => $errores) {
+                        foreach ($errores as $error) {   
+                            $params['msg'] .= $error . "<br>";
+                        }
+                    }
+                }
+            }
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
         require 'templates/registry.php';
     }
     public function main()
@@ -45,8 +83,8 @@ class Controller
                 ";
             }
 
-             /* Llenamos la lista del dia Siguiente */
-             foreach ($arrayNextDate as $linea) {
+            /* Llenamos la lista del dia Siguiente */
+            foreach ($arrayNextDate as $linea) {
                 $hora1 = $linea[3];
                 $titulo1 = $linea["title"];
                 $id1 = $linea["id_user"];

@@ -41,6 +41,7 @@ body {
 .form-label-group > input,
 .form-label-group > label {
   padding: var(--input-padding-y) var(--input-padding-x);
+  cursor: default;
 }
 
 .form-label-group {
@@ -67,23 +68,5 @@ body {
   border-radius: .25rem;
   -webkit-transition: all .1s ease-in-out;
   transition: all .1s ease-in-out;
-}
-
-.btn-google {
-  color: white !important;
-  background-color: #ea4335 !important;
-}
-
-.btn-google:hover {
-  color: black !important;
-}
-
-.btn-facebook {
-  color: white !important;
-  background-color: #3b5998 !important;
-}
-
-.btn-facebook:hover {
-  color: black !important;
 }
 /*# sourceMappingURL=registry.css.map */
