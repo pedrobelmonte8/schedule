@@ -1,8 +1,9 @@
 <?php
 
 include_once('Config.php');
-class Model extends PDO{
-   
+class Model extends PDO
+{
+
     protected $conexion;
 
     public function __construct()
@@ -15,7 +16,7 @@ class Model extends PDO{
     public function dameEventosActual($fecha)
     {
         try {
-        $consulta="SELECT id, title,description,DATE_FORMAT(date,'%T'),importance,id_user from event WHERE date LIKE '%$fecha%' AND id_user='1'";
+            $consulta = "SELECT id, title,description,DATE_FORMAT(date,'%T'),importance,id_user from event WHERE date LIKE '%$fecha%' AND id_user='1'";
             $result = $this->conexion->query($consulta);
             return $result->fetchAll();
         } catch (Exception $e) {
@@ -26,6 +27,29 @@ class Model extends PDO{
             return false;
         }
     }
-
-
+    //Funciones relacionadas al registro
+    public function intentaRegistro($name, $pass, $email)
+    {
+        try {
+            $consulta = "INSERT INTO users (name, email, pass,permissions, google_id) VALUES (:name, :email, :pass, :permissions,:google_id)";
+            $result = $this->conexion->prepare($consulta);
+            $result->bindParam(':name', $name);
+            $result->bindParam(':email', $email);
+            $passBD = encriptar_contraseña($pass);
+            $result->bindParam(':pass', $passBD);
+            $result->bindValue(':permissions', 1);
+            $result->bindValue(':google_id', 2);
+            if ($result->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
 }

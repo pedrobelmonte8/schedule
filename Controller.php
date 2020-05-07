@@ -13,7 +13,8 @@ class Controller
     {
         try {
             $params = array(
-                'msg' => ''
+                'msg' => '',
+                'resultado'=>array()
             );
             if (isset($_POST["inputRegister"])) {
                 // Validamos con la clase validar
@@ -27,16 +28,29 @@ class Controller
                     array('name' => 'inputRepPassword', 'regla' => 'no-empty')
                 );
                 $validaciones = $validacion->rules($regla, $datos);
-              
-                if ($validaciones == 1) {   
+                //Si no hay errores...
+                if ($validaciones == 1) {
                     $nombre = recoge("inputName");
                     $email = recoge("inputEmail");
                     $pass = recoge("inputPassword");
-                    $pass2 = recoge("inputRepPassword");
+                    /*$foto=campoImagen();*/
+                    if(empty($errores)){
+                        $m = new Model();
+                        $params["resultado"]=$m->intentaRegistro($nombre,$pass, $email);
+                        if($params["resultado"])
+                            $params["msg"]="Exito al crear el usuario";
+                        else
+                        $params["msg"]="Error al crear el usuario";
+                        
+                    }
+
                 } else {
                     foreach ($validaciones as $key => $errores) {
-                        foreach ($errores as $error) {   
-                            $params['msg'] .= $error . "<br>";
+                        foreach ($errores as $error) {
+                            $params['msg'] .= "<div id='error'>
+                            <p><i class='fa fa-times-circle'></i> " . $error . "</p>
+                            </div>
+                           ";
                         }
                     }
                 }

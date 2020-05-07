@@ -24,6 +24,15 @@ body {
   padding: 2rem;
 }
 
+#errores .error {
+  color: #D8000C;
+  background-color: #df5d5d;
+}
+
+#errores .error p {
+  padding: 3px;
+}
+
 .form-signin {
   width: 100%;
 }

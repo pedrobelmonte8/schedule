@@ -1,0 +1,2 @@
+Cannot pass parameter 2 by reference0.71857700 1588872702En (Model:intentaRegistro)
+Cannot pass parameter 2 by reference0.61366300 1588873766En (Model:intentaRegistro)
