@@ -7,6 +7,27 @@ class Controller
 {
     public function login()
     {
+        try {
+            if (isset($_POST["btnGoogle"])) {
+                $googleClient = new Google_Client();
+                $auth = new GoogleAuth($googleClient);
+                if($auth->checkRedirectCode()){
+                    die($_GET["code"]);
+                }
+                if (!$auth->isLoggedIn()) {
+                    header("Location:" . $auth->getAuthUrl());
+                } else {
+                    //Google Id
+                    print_r($_SESSION);
+                }
+            }
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
         require 'templates/login.php';
     }
     public function registry()
@@ -14,7 +35,7 @@ class Controller
         try {
             $params = array(
                 'msg' => '',
-                'resultado'=>array()
+                'resultado' => array()
             );
             if (isset($_POST["inputRegister"])) {
                 // Validamos con la clase validar
@@ -33,21 +54,28 @@ class Controller
                     $nombre = recoge("inputName");
                     $email = recoge("inputEmail");
                     $pass = recoge("inputPassword");
-                    /*$foto=campoImagen();*/
-                    if(empty($errores)){
+                    $errores = [];
+                    $foto = campoImagen('inputFile', './images/', $errores, Config::$extensionesValidas, $nombre);
+                    if (empty($errores)) {
                         $m = new Model();
-                        $params["resultado"]=$m->intentaRegistro($nombre,$pass, $email);
-                        if($params["resultado"])
-                            $params["msg"]="Exito al crear el usuario";
+                        $params["resultado"] = $m->intentaRegistro($nombre, $pass, $email, $foto);
+                        if ($params["resultado"])
+                            $params["msg"] = "Exito al crear el usuario";
                         else
-                        $params["msg"]="Error al crear el usuario";
-                        
+                            $params["msg"] = "Error al crear el usuario";
+                    } else {
+                        //Si la imagen da problemas...
+                        foreach ($errores as $error) {
+                            $params['msg'] .=  "<div class='error'>
+                            <p><i class='fa fa-times-circle'></i> " . $error . "</p>
+                            </div>
+                           ";
+                        }
                     }
-
                 } else {
                     foreach ($validaciones as $key => $errores) {
                         foreach ($errores as $error) {
-                            $params['msg'] .= "<div id='error'>
+                            $params['msg'] .= "<div class='error'>
                             <p><i class='fa fa-times-circle'></i> " . $error . "</p>
                             </div>
                            ";

@@ -7,3 +7,10 @@ SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not ma
 SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens0.29545500 1588873838En (Model:intentaRegistro)
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'google_id'0.53399000 1588873903En (Model:intentaRegistro)
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'google_id'0.97767500 1588874089En (Model:intentaRegistro)
+finfo::finfo(): Failed to load magic database at 'C:\xampp2\tmp\php9EAC.tmp'.0.87869500 1589209925
+finfo::finfo(): Failed to load magic database at 'C:\xampp2\tmp\phpB7F8.tmp'.0.49649300 1589210063
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PedroBelmonte' for key 'name'0.96949400 1589211524En (Model:intentaRegistro)
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PedroBelmonte' for key 'name'0.94111100 1589211530En (Model:intentaRegistro)
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PedroBelmonte' for key 'name'0.62254500 1589211531En (Model:intentaRegistro)
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PedroBelmonte' for key 'name'0.73253400 1589213475En (Model:intentaRegistro)
+invalid json token0.74261300 1589224182

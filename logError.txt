@@ -1,2 +1,23 @@
 Cannot pass parameter 2 by reference0.71857700 1588872702En (Model:intentaRegistro)
 Cannot pass parameter 2 by reference0.61366300 1588873766En (Model:intentaRegistro)
+Call to a member function file() on null0.89908800 1589209869
+finfo::finfo() expects parameter 2 to be a valid path, array given0.69620200 1589209894
+finfo::finfo() expects parameter 2 to be a valid path, array given0.21019600 1589209897
+Class 'Google_Client' not found0.34859700 1589214297
+Class 'Google_Client' not found0.42458700 1589214303
+Class 'Google_Client' not found0.47855400 1589214304
+Class 'Google_Client' not found0.73746600 1589214991
+Class 'Google_Client' not found0.70236400 1589216545
+Class 'Google_Client' not found0.14216900 1589216619
+Call to undefined method GoogleAuth::getAuthUrl()0.61027000 1589219868
+Call to undefined method GoogleAuth::getAuthUrl()0.47131800 1589219869
+Call to undefined method GoogleAuth::getAuthUrl()0.97484000 1589219869
+Call to undefined method GoogleAuth::getAuthUrl()0.38267600 1589219870
+Call to undefined method GoogleAuth::getAuthUrl()0.58404400 1589219870
+Call to undefined method GoogleAuth::getAuthUrl()0.78534900 1589219870
+Call to undefined method GoogleAuth::getAuthUrl()0.96514100 1589219870
+Call to undefined method GoogleAuth::getAuthUrl()0.42136000 1589219896
+Call to undefined method GoogleAuth::getAuthUrl()0.02895200 1589219943
+Class 'Google\Auth\OAuth2' not found0.44757200 1589219951
+Class 'Google\Auth\OAuth2' not found0.08768400 1589220032
+Call to undefined method GoogleAuth::checkRedirectCode()0.83619500 1589223877

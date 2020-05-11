@@ -70,6 +70,13 @@ body {
 }
 
 .btn-google {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
   color: white !important;
   background-color: #ea4335 !important;
 }

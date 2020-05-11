@@ -4,6 +4,8 @@ require_once 'Config.php';
 require_once 'Model.php';
 require_once 'Controller.php';
 require_once 'clases/sesiones.php';
+require_once 'clases/google_auth.php';
+require_once 'vendor/autoload.php';
 if (!isset($_SESSION['nivel'])) {
     $_SESSION['nivel'] = 0;
 }

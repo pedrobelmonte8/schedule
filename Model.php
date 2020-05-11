@@ -28,10 +28,10 @@ class Model extends PDO
         }
     }
     //Funciones relacionadas al registro
-    public function intentaRegistro($name, $pass, $email)
+    public function intentaRegistro($name, $pass, $email, $img)
     {
         try {
-            $consulta = "INSERT INTO users (name, email, pass,permissions, google_id) VALUES (:name, :email, :pass, :permissions,:google_id)";
+            $consulta = "INSERT INTO users (name, email, pass,permissions, google_id, img) VALUES (:name, :email, :pass, :permissions,:google_id,:img)";
             $result = $this->conexion->prepare($consulta);
             $result->bindParam(':name', $name);
             $result->bindParam(':email', $email);
@@ -39,6 +39,7 @@ class Model extends PDO
             $result->bindParam(':pass', $passBD);
             $result->bindValue(':permissions', 1);
             $result->bindValue(':google_id', 2);
+            $result->bindParam(':img', $img);
             if ($result->execute()) {
                 return true;
             } else {
