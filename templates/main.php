@@ -21,6 +21,10 @@
         <div>
             <i class="fas fa-bell iconSettings"></i>
             <i class="fas fa-cog iconSettings"></i>
+            <i class="fas fa-sign-out-alt iconSettings"></i>
+            <form method="post">
+                <input type="submit" name="logout" value="Salir">
+            </form>
         </div>
     </nav>
     <div class="container-fluid">

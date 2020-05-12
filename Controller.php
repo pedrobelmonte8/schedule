@@ -7,20 +7,49 @@ class Controller
 {
     public function login()
     {
+
         try {
-            if (isset($_POST["btnGoogle"])) {
-                $googleClient = new Google_Client();
-                $auth = new GoogleAuth($googleClient);
-                if($auth->checkRedirectCode()){
-                    die($_GET["code"]);
-                }
-                if (!$auth->isLoggedIn()) {
-                    header("Location:" . $auth->getAuthUrl());
-                } else {
-                    //Google Id
-                    print_r($_SESSION);
+            $params = array(
+                "resultado" => array()
+            );
+            if(isset($_SESSION)){
+            session_destroy();
+            }
+            $m = new Model();
+            if (isset($_POST['inputLogin'])) {
+                $datos = $_POST;
+                $validacion = new Validacion();
+                $regla = array(
+                    array('name' => 'logEmail', 'regla' => 'no-empty'),
+                    array('name' => 'logPass', 'regla' => 'no-empty')
+                );
+                $validaciones = $validacion->rules($regla, $datos);
+                if ($validaciones == 1) {
+                    $email = recoge("logEmail");
+                    $pass = recoge("logPass");
+
+                    $params["resultado"] = $m->intentaLogin($email, $pass);
+                    //Si todo va bien vamos al main, iniciando Sesiones
+                    if (count($params['resultado']) == 1) {
+                        $sesion = new Sesiones();
+                        $sesion->inicioSesion($params["resultado"][0]["name"], $params["resultado"][0]["permissions"], $params["resultado"][0]["id"], $params["resultado"][0]["img"]);
+                        header('Location:index.php?ctl=main');
+                    } else
+                        echo "Ningun";
                 }
             }
+            //Login con Google APLAZADO
+            /*if (isset($_POST["btnGoogle"])) {
+                $session = new Sesiones;
+                $googleClient = new Google_Client();
+                $auth = new GoogleAuth($googleClient);
+                if (!$auth->isLoggedIn()) {
+                    header("Location:" . $auth->getAuthUrl());
+                    //ARREGLAR
+                } else {
+                    header("Location:index.php?ctl=main");
+                }
+            } */
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logException.txt");
             return false;
@@ -95,12 +124,27 @@ class Controller
     public function main()
     {
         try {
+            if (isset($_POST['logout'])) {
+                unset($_SESSION["access_token"]);
+                header('location:index.php');
+            }
             $params = array(
                 'actDate' => date('d-m-Y'),
                 'nextDate' => date('d-m-Y', strtotime("+1 day")),
                 'dataActDate' => '',
                 'dataNextDate' => ''
             );
+            /*             
+            $googleClient = new Google_Client();
+            $auth = new GoogleAuth($googleClient);
+            if ($auth->checkRedirectCode()) {
+                header("Location:index.php?ctl=main");
+                echo "Entro";
+            } else {
+                echo "Error";
+            } */
+            $session = new Sesiones;
+            print_r($_SESSION);
             $m = new Model();
             //Cambiamos formato a la fecha para hacer la consulta
             $newActDate = date("Y-m-d", strtotime($params["actDate"]));

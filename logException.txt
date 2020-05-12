@@ -14,3 +14,23 @@ SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PedroBelm
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PedroBelmonte' for key 'name'0.62254500 1589211531En (Model:intentaRegistro)
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PedroBelmonte' for key 'name'0.73253400 1589213475En (Model:intentaRegistro)
 invalid json token0.74261300 1589224182
+invalid json token0.01154700 1589295201
+Invalid code0.52284200 1589295215
+invalid json token0.96249000 1589298988
+invalid json token0.32350800 1589298990
+invalid json token0.64160100 1589299001
+invalid json token0.12361400 1589299224
+invalid json token0.95088700 1589299224
+invalid json token0.61170300 1589299225
+
+invalid json token0.17262100 1589301705 setToken 
+invalid json token0.84506100 1589301719 setToken 
+invalid json token0.55881900 1589301720 setToken 
+invalid json token0.98260300 1589301819 setToken 
+invalid json token0.85840000 1589302610 setToken 
+invalid json token0.09776700 1589302612 setToken 
+invalid json token0.90249000 1589302612 setToken 
+
+invalid json token0.62252900 1589310766 setToken 
+id_token must be passed in or set as part of setAccessToken0.68290600 1589310766 checkRedirectCode
+

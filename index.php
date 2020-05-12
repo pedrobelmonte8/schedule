@@ -6,14 +6,15 @@ require_once 'Controller.php';
 require_once 'clases/sesiones.php';
 require_once 'clases/google_auth.php';
 require_once 'vendor/autoload.php';
-if (!isset($_SESSION['nivel'])) {
+$f = new Sesiones();
+/* if (!isset($_SESSION['nivel'])) {
     $_SESSION['nivel'] = 0;
-}
+} */
 $map = array(
 
     'login' => array('controller' => 'Controller', 'action' => 'login', 'acceso' => 0),
     'registry' => array('controller' => 'Controller', 'action' => 'registry', 'acceso' => 0),
-    'main' => array('controller' => 'Controller', 'action' => 'main', 'acceso' => 0)
+    'main' => array('controller' => 'Controller', 'action' => 'main', 'acceso' => 1)
 );
 
 if (isset($_REQUEST['ctl'])) {
@@ -30,13 +31,17 @@ $controlador = $map[$ruta];
 
 if (method_exists($controlador['controller'], $controlador['action'])) {
     //Si tienes permisos
-    if ($controlador['acceso'] <= $_SESSION['nivel']) {
+    $nivel=0;
+    if(isset($_SESSION["nivel"])){
+        $nivel=$_SESSION["nivel"];
+    }
+    if ($controlador['acceso'] <= $nivel ||isset($_SESSION["access_token"])) {
         call_user_func(array(
             new $controlador['controller'],
             $controlador['action']
         ));
     } else {
-        header('location:index.php?ctl=inicio');
+        header('location:index.php?ctl=login');
     }
 } else {
     header('location:index.php');

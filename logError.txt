@@ -21,3 +21,10 @@ Call to undefined method GoogleAuth::getAuthUrl()0.02895200 1589219943
 Class 'Google\Auth\OAuth2' not found0.44757200 1589219951
 Class 'Google\Auth\OAuth2' not found0.08768400 1589220032
 Call to undefined method GoogleAuth::checkRedirectCode()0.83619500 1589223877
+Class 'GoogleAuth' not found0.47934300 1589304241
+Class 'GoogleAuth' not found0.95817200 1589304726
+Call to undefined method Google_Client::checkRedirectCode()0.51661200 1589304953
+Call to undefined method Google_Client::checkRedirectCode()0.42777100 1589304954
+Call to undefined method Google_Client::checkRedirectCode()0.07069000 1589304960
+Call to a member function getAttributes() on array0.52815300 1589310762
+Call to a member function getAttributes() on array0.66206500 1589310775
