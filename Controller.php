@@ -9,12 +9,17 @@ class Controller
     {
 
         try {
-            $params = array(
-                "resultado" => array()
-            );
-            if(isset($_SESSION)){
-            session_destroy();
+            $sesion = new Sesiones();
+            //Si la sesion está iniciada no le dejamos entrar al Login
+            if (isset($_SESSION["nivel"])) {
+                if ($_SESSION["nivel"] > 0) {
+                    header("Location:index.php?ctl=main");
+                }
             }
+            $params = array(
+                "resultado" => array(),
+                "msg" => ""
+            );
             $m = new Model();
             if (isset($_POST['inputLogin'])) {
                 $datos = $_POST;
@@ -27,15 +32,26 @@ class Controller
                 if ($validaciones == 1) {
                     $email = recoge("logEmail");
                     $pass = recoge("logPass");
-
                     $params["resultado"] = $m->intentaLogin($email, $pass);
                     //Si todo va bien vamos al main, iniciando Sesiones
                     if (count($params['resultado']) == 1) {
-                        $sesion = new Sesiones();
                         $sesion->inicioSesion($params["resultado"][0]["name"], $params["resultado"][0]["permissions"], $params["resultado"][0]["id"], $params["resultado"][0]["img"]);
                         header('Location:index.php?ctl=main');
                     } else
-                        echo "Ningun";
+                        $params["msg"] .= "<div class='error'>
+                        <p><i class='fa fa-times-circle'></i> " . "Error en el Login" . "</p>
+                        </div>
+                       ";
+                } else {
+                    print_r($validaciones);
+                    foreach ($validaciones as $key => $errores) {
+                        foreach ($errores as $error) {
+                            $params['msg'] .= "<div class='error'>
+                            <p><i class='fa fa-times-circle'></i> " . $error . "</p>
+                            </div>
+                           ";
+                        }
+                    }
                 }
             }
             //Login con Google APLAZADO
@@ -62,6 +78,12 @@ class Controller
     public function registry()
     {
         try {
+            //Si la sesion está iniciada no le dejamos entrar al Login
+            if (isset($_SESSION["nivel"])) {
+                if ($_SESSION["nivel"] > 0) {
+                    header("Location:index.php?ctl=main");
+                }
+            }
             $params = array(
                 'msg' => '',
                 'resultado' => array()
@@ -125,7 +147,9 @@ class Controller
     {
         try {
             if (isset($_POST['logout'])) {
-                unset($_SESSION["access_token"]);
+                /* unset($_SESSION["access_token"]); */
+                $sesion = new Sesiones;
+                $sesion->destruir_sesion();
                 header('location:index.php');
             }
             $params = array(
@@ -144,7 +168,6 @@ class Controller
                 echo "Error";
             } */
             $session = new Sesiones;
-            print_r($_SESSION);
             $m = new Model();
             //Cambiamos formato a la fecha para hacer la consulta
             $newActDate = date("Y-m-d", strtotime($params["actDate"]));
@@ -191,5 +214,41 @@ class Controller
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
         }
         require 'templates/main.php';
+    }
+
+    public function notificaciones()
+    {
+        try {
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
+        require 'templates/notifications.php';
+    }
+    public function configuracion()
+    {
+        try {
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
+        require 'templates/settings.php';
+    }
+
+    public function logout()
+    {
+        try {
+            $sesion = new Sesiones;
+            $sesion->destruir_sesion();
+            header('Location:index.php');
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logException.txt");
+            header('Location: index.php?ctl=error');
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            header('Location: index.php?ctl=error');
+        }
     }
 }

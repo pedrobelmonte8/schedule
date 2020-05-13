@@ -21,11 +21,11 @@
                         <h5 class="card-title text-center">Iniciar Sesión</h5>
                         <form class="form-signin" method="POST">
                             <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="logEmail" autofocus>
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="logEmail" autofocus required>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="logPass">
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="logPass" required>
                             </div>
 
                             <div class="custom-control custom-checkbox mb-3">
@@ -37,7 +37,8 @@
                             <!-- Link hacia el registro -->
                             <a href="index.php?ctl=main" class="d-block text-center mt-2 small">Registro</a>
                             <hr class="my-4">
-                            <button class="btn btn-lg btn-google btn-block text-uppercase" href="google.es" name="btnGoogle" disabled><i class="fab fa-google mr-2"></i> Iniciar con Google</button>                        </form>
+                            <button class="btn btn-lg btn-google btn-block text-uppercase" href="google.es" name="btnGoogle" disabled><i class="fab fa-google mr-2"></i> Iniciar con Google</button>
+                        </form>
                     </div>
                 </div>
             </div>

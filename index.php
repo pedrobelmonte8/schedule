@@ -14,7 +14,10 @@ $map = array(
 
     'login' => array('controller' => 'Controller', 'action' => 'login', 'acceso' => 0),
     'registry' => array('controller' => 'Controller', 'action' => 'registry', 'acceso' => 0),
-    'main' => array('controller' => 'Controller', 'action' => 'main', 'acceso' => 1)
+    'main' => array('controller' => 'Controller', 'action' => 'main', 'acceso' => 1),
+    'notificaciones'=>array('controller'=>'Controller','action'=>'notificaciones','acceso'=>1),
+    'configuracion' => array('controller' => 'Controller', 'action' => 'configuracion', 'acceso' => 1),
+    'logout' => array('controller' => 'Controller', 'action' => 'logout', 'acceso' => 1)
 );
 
 if (isset($_REQUEST['ctl'])) {
@@ -25,23 +28,26 @@ if (isset($_REQUEST['ctl'])) {
         exit;
     }
 } else {
-    $ruta = 'login';
+    $ruta = 'main';
 }
 $controlador = $map[$ruta];
 
 if (method_exists($controlador['controller'], $controlador['action'])) {
     //Si tienes permisos
-    $nivel=0;
-    if(isset($_SESSION["nivel"])){
-        $nivel=$_SESSION["nivel"];
+    $nivel = 0;
+    if (isset($_SESSION["nivel"])) {
+        $nivel = $_SESSION["nivel"];
     }
-    if ($controlador['acceso'] <= $nivel ||isset($_SESSION["access_token"])) {
+    if ($controlador['acceso'] <= $nivel /* ||isset($_SESSION["access_token"]) */) {
         call_user_func(array(
             new $controlador['controller'],
             $controlador['action']
         ));
     } else {
-        header('location:index.php?ctl=login');
+        if ($nivel > 0) {
+            header('location:index.php?ctl=main');
+        } else
+            header('location:index.php?ctl=login');
     }
 } else {
     header('location:index.php');

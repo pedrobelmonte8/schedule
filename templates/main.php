@@ -18,13 +18,12 @@
     <!-- Cabecera -->
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Organízate</a>
-        <div>
-            <i class="fas fa-bell iconSettings"></i>
-            <i class="fas fa-cog iconSettings"></i>
-            <i class="fas fa-sign-out-alt iconSettings"></i>
-            <form method="post">
-                <input type="submit" name="logout" value="Salir">
-            </form>
+        <div class="contDatos">
+            <img src="<?php echo isset($_SESSION['img']) ? $_SESSION["img"] : "" ?>" alt="">
+            <h3 class="text-light m-3"> <?php echo isset($_SESSION['user']) ? $_SESSION['user'] : "" ?></h3>
+            <a href="index.php?ctl=notificaciones"><i class="fas fa-bell iconSettings iNoti"></i></a>
+            <a href="index.php?ctl=configuracion"> <i class="fas fa-cog iconSettings iConf"></i></a>
+            <i id="buttonLogOut" class="fas fa-sign-out-alt iconSettings"></i>
         </div>
     </nav>
     <div class="container-fluid">
@@ -111,7 +110,7 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="scripts/main.js"></script>

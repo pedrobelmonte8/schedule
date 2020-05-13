@@ -1,92 +1,123 @@
-* {
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-}
-
-body {
-    background: #ff8800;
-    background: linear-gradient(to right, rgb(221, 69, 42), rgb(255, 133, 51));
-}
-
-
-/* Cabecera */
-
-.iconSettings,
-.icon {
-    color: white;
-    margin: 5px;
-}
-
-.hoja1::-webkit-scrollbar {
-    display: none;
-}
-
-.hoja2::-webkit-scrollbar {
-    display: none;
-}
-
-.hoja1,
-.hoja2 {
-    height: 800px;
-    background-color: rgb(245, 218, 178);
-    font-family: 'Handlee', cursive;
-    font-size: 1.2rem;
-    overflow: scroll;
-    ul {
-        overflow: hidden;
-        p {
+        * {
+            box-sizing: border-box;
             margin: 0px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            padding: 0px;
         }
-        .iconos {
-            display: inline-flex;
+        
+        body {
+            background: #ff8800;
+            background: linear-gradient(to right, rgb(221, 69, 42), rgb(255, 133, 51));
         }
-        i {
-            margin: 5px;
-            &:hover {
-                cursor: pointer;
-            }
-        }
-        li {
+        /* Cabecera */
+        
+        .contDatos {
             display: flex;
-            justify-content: space-between;
-            list-style: none;
-            margin: 5px;
-            border-bottom: 1px solid black;
+            align-items: center;
+            img {
+                height: 60px;
+                width: 60px;
+                border-radius: 50px;
+            }
+        }
+        
+        .iconSettings,
+        .icon {
+            color: white;
+            margin: 7px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        .iNoti {
             &:hover {
-                cursor: pointer;
-            }
-            i {
-                float: right;
-                margin: 5px;
-                /*    &:hover {} */
+                color: rgb(226, 226, 30);
+                transition: 0.5s;
             }
         }
-    }
-}
-
-.hoja1 {
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
-}
-
-.hoja2 {
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-}
-
-.details {
-    height: 500px;
-    background-color: rgb(30, 32, 42);
-    #details {
-        .details-save {
-            justify-content: space-between;
+        
+        .iConf {
+            &:hover {
+                color: grey;
+                transition: 0.5s;
+            }
         }
-    }
-    #search {
-        display: none;
-    }
-}
+        
+        #buttonLogOut {
+            &:hover {
+                color: rgb(233, 35, 35);
+                transition: 0.5s;
+            }
+        }
+        
+        .hoja1::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .hoja2::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .hoja1,
+        .hoja2 {
+            height: 800px;
+            background-color: rgb(245, 218, 178);
+            font-family: 'Handlee', cursive;
+            font-size: 1.2rem;
+            overflow: scroll;
+            ul {
+                overflow: hidden;
+                p {
+                    margin: 0px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .iconos {
+                    display: inline-flex;
+                }
+                i {
+                    margin: 5px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    list-style: none;
+                    margin: 5px;
+                    border-bottom: 1px solid black;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    i {
+                        float: right;
+                        margin: 5px;
+                        /*    &:hover {} */
+                    }
+                }
+            }
+        }
+        
+        .hoja1 {
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+        }
+        
+        .hoja2 {
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+        }
+        
+        .details {
+            height: 500px;
+            background-color: rgb(30, 32, 42);
+            #details {
+                .details-save {
+                    justify-content: space-between;
+                }
+            }
+            #search {
+                display: none;
+            }
+        }

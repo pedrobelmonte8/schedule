@@ -12,10 +12,45 @@ body {
 }
 
 /* Cabecera */
+.contDatos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contDatos img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+}
+
 .iconSettings,
 .icon {
   color: white;
-  margin: 5px;
+  margin: 7px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.iNoti:hover {
+  color: #e2e21e;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.iConf:hover {
+  color: grey;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+#buttonLogOut:hover {
+  color: #e92323;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .hoja1::-webkit-scrollbar {
