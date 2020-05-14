@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -90,6 +91,16 @@ body {
   display: inline-flex;
 }
 
+.hoja1 ul .iconos .importante,
+.hoja2 ul .iconos .importante {
+  color: red;
+}
+
+.hoja1 ul .iconos .no-importante,
+.hoja2 ul .iconos .no-importante {
+  color: #00fc26;
+}
+
 .hoja1 ul i,
 .hoja2 ul i {
   margin: 5px;
@@ -148,5 +159,11 @@ body {
 
 .details #search {
   display: none;
+}
+
+/* Flechas de cambio de días */
+.next-last {
+  font-size: 60px;
+  cursor: pointer;
 }
 /*# sourceMappingURL=main.css.map */

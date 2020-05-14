@@ -13,7 +13,7 @@ class Model extends PDO
         $this->conexion->exec("set names utf8");
         $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
-    public function dameEventosActual($fecha)
+    public function dameEventos($fecha)
     {
         try {
             $consulta = "SELECT id, title,description,DATE_FORMAT(date,'%T'),importance,id_user from event WHERE date LIKE '%$fecha%' AND id_user='1'";
@@ -52,8 +52,9 @@ class Model extends PDO
             return false;
         }
     }
-
-    public function intentaLogin($email, $pass){
+    //Funciones relacionadas con el Login
+    public function intentaLogin($email, $pass)
+    {
         try {
             $consulta = "select * from users where email=:email and pass=:pass";
             $result = $this->conexion->prepare($consulta);
@@ -70,4 +71,5 @@ class Model extends PDO
             return false;
         }
     }
+
 }

@@ -74,6 +74,12 @@
                 }
                 .iconos {
                     display: inline-flex;
+                    .importante {
+                        color: red;
+                    }
+                    .no-importante {
+                        color: rgb(0, 252, 38);
+                    }
                 }
                 i {
                     margin: 5px;
@@ -120,4 +126,10 @@
             #search {
                 display: none;
             }
+        }
+        /* Flechas de cambio de días */
+        
+        .next-last {
+            font-size: 60px;
+            cursor: pointer;
         }

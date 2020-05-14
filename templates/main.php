@@ -34,21 +34,18 @@
                     <!-- Pinto la fecha del dia actual mediente PHP -->
                     <p id="actualDate"><?php echo isset($params['actDate']) ? $params['actDate'] : "error" ?></p>
                 </div>
-                <ul>
-                    <div>
-                        <!-- elementList Añadir Evento Click -->
-                        <li class="elementList" data-id="1">
-                            <p class="paragElementList" data-hour="12:00">12:00- Comida con la familia, ya no se que mas poner pero debo poner cosas hasta que salte de linea</p>
-                            <div class="iconos">
-                                <i class="far fa-square importancia"></i>
-                                <i class="iconos fas fa-trash-alt"></i>
-                                <i class="iconos fas fa-pencil-alt"></i>
-                            </div>
-                        </li>
-                        <?php echo isset($params['dataActDate']) ? $params['dataActDate'] : "error" ?>
-                        <i class="fas fa-plus"></i>
-
-                    </div>
+                <ul id="actualDateList">
+                    <!-- elementList Añadir Evento Click -->
+                   <!--  <li class="elementList" data-id="1">
+                        <p class="paragElementList" data-hour="12:00">12:00- Comida con la familia, ya no se que mas poner pero debo poner cosas hasta que salte de linea</p>
+                        <div class="iconos">
+                            <i class="far fa-square importancia"></i>
+                            <i class="iconos fas fa-trash-alt"></i>
+                            <i class="iconos fas fa-pencil-alt"></i>
+                        </div>
+                    </li> -->
+                    <?php echo isset($params['dataActDate']) ? $params['dataActDate'] : "error" ?>
+                    <i class="fas fa-plus"></i>
                 </ul>
             </div>
             <!-- Final Tarjeta 1 -->
@@ -57,11 +54,11 @@
                 <div class="fecha2">
                     <p id="nextDate"><?php echo isset($params['nextDate']) ? $params['nextDate'] : "error" ?></p>
                 </div>
-                <ul>
-                    <li>
-                        <p>12:00 - Comida </p>
+                <ul id="nextDateList">
+                   <!--  <li>
+                        <p>12:00 - Comida</p>
                         <div class="iconos"><i class="far fa-square importancia"></i><i class="iconos fas fa-trash-alt"></i><i class="iconos fas fa-pencil-alt"></i></div>
-                    </li>
+                    </li> -->
                     <i class="fas fa-plus"></i>
                 </ul>
             </div>
@@ -105,8 +102,13 @@
                 </form>
             </div>
             <!-- Final Ficha Detalles -->
-            <div class="col-sm-3">
-                <i class="fas fa-angle-right"></i>
+        </div>
+        <div class="row next-last">
+            <div class="ml-4 col-sm-4 d-flex justify-content-start">
+                <i class="fas fa-angle-left center" id="anterior"></i>
+            </div>
+            <div class="ml-4 col-sm-4 d-flex justify-content-end">
+                <i class="fas fa-angle-right center" id="siguiente"></i>
             </div>
         </div>
     </div>

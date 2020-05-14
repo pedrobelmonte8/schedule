@@ -172,19 +172,20 @@ class Controller
             //Cambiamos formato a la fecha para hacer la consulta
             $newActDate = date("Y-m-d", strtotime($params["actDate"]));
             $newNextDate = date("Y-m-d", strtotime($params["nextDate"]));
-            $arrayActDate = $m->dameEventosActual($newActDate);
-            $arrayNextDate = $m->dameEventosActual($newNextDate);
+            $arrayActDate = $m->dameEventos($newActDate);
+            $arrayNextDate = $m->dameEventos($newNextDate);
 
             /* Llenamos la lista del dia Actual */
             foreach ($arrayActDate as $linea) {
                 $hora1 = $linea[3];
                 $titulo1 = $linea["title"];
                 $id1 = $linea["id_user"];
+                $linea["importance"] == 1 ? $importancia = 'importante' : $importancia = 'no-importante';
                 $params["dataActDate"] .= "
                 <li class='elementList' data-id='" . $id1 . "'>
-                <p class='paragEelemntList'>" . $hora1 . " - " . $titulo1 . "</p>
+                <p class='paragElementList'>" . $hora1 . " - " . $titulo1 . "</p>
                 <div class='iconos'>
-                <i class='far fa-square importancia'></i>
+                <i class='fas fa-square importancia " . $importancia . "'></i>
                 <i class='iconos fas fa-trash-alt'></i>
                 <i class='iconos fas fa-pencil-alt'></i>
                 </div>
@@ -197,11 +198,12 @@ class Controller
                 $hora1 = $linea[3];
                 $titulo1 = $linea["title"];
                 $id1 = $linea["id_user"];
+                $linea["importance"] == 1 ? $importancia = 'importante' : $importancia = 'no-importante';
                 $params["dataActDate"] .= "
                 <li class='elementList' data-id='" . $id1 . "'>
-                <p class='paragEelemntList'>" . $hora1 . " - " . $titulo1 . "</p>
+                <p class='paragElementList'>" . $hora1 . " - " . $titulo1 . "</p>
                 <div class='iconos'>
-                <i class='far fa-square importancia'></i>
+                <i class='fas fa-square importancia " . $importancia . "'></i>
                 <i class='iconos fas fa-trash-alt'></i>
                 <i class='iconos fas fa-pencil-alt'></i>
                 </div>
@@ -214,6 +216,20 @@ class Controller
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
         }
         require 'templates/main.php';
+    }
+
+    public function getListaEventos()
+    {
+        try {
+            $fecha = $_POST["fechaActual"];
+            $m = new Model();
+            $datos = $m->dameEventos($fecha);
+            echo json_encode($datos);
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
     }
 
     public function notificaciones()
