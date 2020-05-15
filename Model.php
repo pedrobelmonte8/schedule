@@ -27,6 +27,30 @@ class Model extends PDO
             return false;
         }
     }
+
+    public function nuevoEvento($titulo, $description, $fecha, $hora)
+    {
+        try {
+            $consulta = "INSERT INTO event(title, description, date, importance) VALUES(?,?,?,?) ";
+            $result = $this->conexion->prepare($consulta);
+            $result->bindParam(1, $name);
+            $result->bindParam(2, $description);
+            $result->bindParam(3, $fecha);
+            $result->bindParam(4, $hora);
+            if ($result->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
+
     //Funciones relacionadas al registro
     public function intentaRegistro($name, $pass, $email, $img)
     {
@@ -71,5 +95,4 @@ class Model extends PDO
             return false;
         }
     }
-
 }

@@ -242,6 +242,16 @@ class Controller
         }
         require 'templates/notifications.php';
     }
+    public function nuevoEvento()
+    {
+        try {
+
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
+    }
     public function configuracion()
     {
         try {

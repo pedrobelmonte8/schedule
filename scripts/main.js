@@ -21,6 +21,67 @@ $(document).ready(() => {
         LogOut();
     });
 
+    //Al clickar en cruz para crear nuevo Evento...
+    function abrirModal() {
+        //Abro modal
+        $("#modalNuevoEvento").modal();
+    }
+    //Arreglar Modal y LocalStorage
+    $(".nuevoEvento").on("click", function() {
+        let fechaClickada;
+        if ($(this).closest("ul").attr("id") == "actualDateList") {
+            fechaClickada = $("#actualDate").text();
+        } else if ($(this).closest("ul").attr("id") == "nextDateList") {
+            fechaClickada = $("#nextDate").text();
+        }
+        localStorage.setItem("fechaClickada", fechaClickada);
+        abrirModal();
+    });
+
+    $("#formModal").submit(function() {
+        //Recojo los datos y compruebo que están rellenados
+        let titulo = $.trim($("#formModalTitulo").val());
+        let masDetalles = $.trim($("#formModalDescription").val());
+        let hora = $.trim($("#formModalHora").val());
+        let importancia;
+        let flag = true;
+        $("#CheckModal").is(":checked") ? importancia = 1 : importancia = 0;
+        console.log(titulo + masDetalles + hora);
+        console.log(importancia);
+        if (titulo == "") {
+            alert("Complete el campo titulo");
+            flag = false;
+        } else
+        if (hora == "") {
+            alert("Complete el campo hora");
+            flag = false;
+        }
+        //Si todo a ido bien se hace la petición Ajax...
+
+        if (flag) {
+            $.ajax({
+                type: "POST",
+                url: "index.php",
+                data: {
+                    "ctl": "nuevoEvento",
+                    "titulo": titulo,
+                    "masDetalles": masDetalles,
+                    "hora": hora,
+                    "importancia": importancia
+                },
+                success: function(data) {
+                    //Si todo va bien...
+                    if (data) {
+                        console.log(data);
+                    }
+                }
+            });
+
+        }
+        return false;
+    });
+
+
     //Flechas dias anterior y siguiente
     function diaAnterior() {
         //Cogemos la fecha de la primera tarjeta cambiandole el formato
@@ -71,12 +132,10 @@ $(document).ready(() => {
             success: function(data) {
                 let datos = JSON.parse(data);
                 //Bucle
-                console.log(data);
                 $("#actualDate").text(fecha.split("-").reverse().join("-"));
                 let lista = $("#actualDateList");
                 lista.empty();
                 for (let i = 0; i < datos.length; i++) {
-                    console.log(datos[i]);
                     let importancia;
                     datos[i].importance == 1 ? importancia = 'importante' : importancia = 'no-importante';
                     /* Insertamos los eventos en la lista */
@@ -88,7 +147,10 @@ $(document).ready(() => {
                         "<i class='iconos fas fa-pencil-alt'></i>" +
                         "</div> </li>");
                 }
-                lista.append("<i class='fas fa-plus'></i>");
+                lista.append("<i class='fas fa-plus nuevoEvento' ></i>");
+                $(".nuevoEvento").on("click", function() {
+                    abrirModal();
+                });
             }
         });
     }
@@ -104,12 +166,10 @@ $(document).ready(() => {
             success: function(data) {
                 let datos = JSON.parse(data);
                 //Bucle
-                console.log(data);
                 $("#nextDate").text(fecha.split("-").reverse().join("-"));
                 let lista = $("#nextDateList");
                 lista.empty();
                 for (let i = 0; i < datos.length; i++) {
-                    console.log(datos[i]);
                     let importancia;
                     datos[i].importance == 1 ? importancia = 'importante' : importancia = 'no-importante';
                     /* Insertamos los eventos en la lista */
@@ -121,7 +181,10 @@ $(document).ready(() => {
                         "<i class='iconos fas fa-pencil-alt'></i>" +
                         "</div> </li>");
                 }
-                lista.append("<i class='fas fa-plus'></i>");
+                lista.append("<i class='fas fa-plus nuevoEvento' ></i>");
+                $("#nuevoEvento").click(function() {
+                    abrirModal();
+                });
             }
         });
     }
@@ -131,4 +194,5 @@ $(document).ready(() => {
     $("#siguiente").click(function() {
         diaSiguiente();
     });
+
 });

@@ -27,6 +27,46 @@
         </div>
     </nav>
     <div class="container-fluid">
+        <!-- Modal de nuevo Evento -->
+        <div id="modalNuevoEvento" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="fechaModal" class="modal-title">Nuevo Evento</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body d-flex flex-column">
+                        <p>Rellene los campos correspondientes</p>
+                        <!-- Formulario del Modal -->
+                        <form id="formModal">
+                            <div class="form-group">
+                                <label for="formModalTitulo">Título</label>
+                                <input type="text" class="form-control" id="formModalTitulo" aria-describedby="tituloHelp" placeholder="Introduce Título" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="formModalDescription">Mas detalles</label>
+                                <textarea class="form-control" id="formModalDescription" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                            <label for="formModalHora">Título</label>
+                                <input type="time" class="form-control" id="formModalHora" aria-describedby="horaHelp" placeholder="Introduce la hora" required>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="CheckModal">
+                                <label class="form-check-label" for="CheckModal">Importante</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <!-- Inicio Tarjeta 1 -->
             <div class="col-sm-4 mt-4 ml-4 p-4 hoja1">
@@ -36,7 +76,7 @@
                 </div>
                 <ul id="actualDateList">
                     <!-- elementList Añadir Evento Click -->
-                   <!--  <li class="elementList" data-id="1">
+                    <!--  <li class="elementList" data-id="1">
                         <p class="paragElementList" data-hour="12:00">12:00- Comida con la familia, ya no se que mas poner pero debo poner cosas hasta que salte de linea</p>
                         <div class="iconos">
                             <i class="far fa-square importancia"></i>
@@ -45,7 +85,7 @@
                         </div>
                     </li> -->
                     <?php echo isset($params['dataActDate']) ? $params['dataActDate'] : "error" ?>
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-plus nuevoEvento"></i>
                 </ul>
             </div>
             <!-- Final Tarjeta 1 -->
@@ -55,11 +95,11 @@
                     <p id="nextDate"><?php echo isset($params['nextDate']) ? $params['nextDate'] : "error" ?></p>
                 </div>
                 <ul id="nextDateList">
-                   <!--  <li>
+                    <!--  <li>
                         <p>12:00 - Comida</p>
                         <div class="iconos"><i class="far fa-square importancia"></i><i class="iconos fas fa-trash-alt"></i><i class="iconos fas fa-pencil-alt"></i></div>
                     </li> -->
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-plus nuevoEvento"></i>
                 </ul>
             </div>
             <!-- Final Tarjeta 2 -->
