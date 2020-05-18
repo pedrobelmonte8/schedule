@@ -99,6 +99,7 @@
                         <p>12:00 - Comida</p>
                         <div class="iconos"><i class="far fa-square importancia"></i><i class="iconos fas fa-trash-alt"></i><i class="iconos fas fa-pencil-alt"></i></div>
                     </li> -->
+                    <?php echo isset($params['dataNextDate']) ? $params['dataNextDate'] : "error" ?>
                     <i class="fas fa-plus nuevoEvento"></i>
                 </ul>
             </div>

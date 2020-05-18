@@ -154,9 +154,7 @@ class Controller
             }
             $params = array(
                 'actDate' => date('d-m-Y'),
-                'nextDate' => date('d-m-Y', strtotime("+1 day")),
-                'dataActDate' => '',
-                'dataNextDate' => ''
+                'nextDate' => date('d-m-Y', strtotime("+1 day"))
             );
             /*             
             $googleClient = new Google_Client();
@@ -168,48 +166,7 @@ class Controller
                 echo "Error";
             } */
             $session = new Sesiones;
-            $m = new Model();
             //Cambiamos formato a la fecha para hacer la consulta
-            $newActDate = date("Y-m-d", strtotime($params["actDate"]));
-            $newNextDate = date("Y-m-d", strtotime($params["nextDate"]));
-            $arrayActDate = $m->dameEventos($newActDate);
-            $arrayNextDate = $m->dameEventos($newNextDate);
-
-            /* Llenamos la lista del dia Actual */
-            foreach ($arrayActDate as $linea) {
-                $hora1 = $linea[3];
-                $titulo1 = $linea["title"];
-                $id1 = $linea["id_user"];
-                $linea["importance"] == 1 ? $importancia = 'importante' : $importancia = 'no-importante';
-                $params["dataActDate"] .= "
-                <li class='elementList' data-id='" . $id1 . "'>
-                <p class='paragElementList'>" . $hora1 . " - " . $titulo1 . "</p>
-                <div class='iconos'>
-                <i class='fas fa-square importancia " . $importancia . "'></i>
-                <i class='iconos fas fa-trash-alt'></i>
-                <i class='iconos fas fa-pencil-alt'></i>
-                </div>
-                </li>
-                ";
-            }
-
-            /* Llenamos la lista del dia Siguiente */
-            foreach ($arrayNextDate as $linea) {
-                $hora1 = $linea[3];
-                $titulo1 = $linea["title"];
-                $id1 = $linea["id_user"];
-                $linea["importance"] == 1 ? $importancia = 'importante' : $importancia = 'no-importante';
-                $params["dataActDate"] .= "
-                <li class='elementList' data-id='" . $id1 . "'>
-                <p class='paragElementList'>" . $hora1 . " - " . $titulo1 . "</p>
-                <div class='iconos'>
-                <i class='fas fa-square importancia " . $importancia . "'></i>
-                <i class='iconos fas fa-trash-alt'></i>
-                <i class='iconos fas fa-pencil-alt'></i>
-                </div>
-                </li>
-                ";
-            }
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
         } catch (Error $e) {
@@ -222,8 +179,9 @@ class Controller
     {
         try {
             $fecha = $_POST["fechaActual"];
+            $usuario = $_SESSION["id"];
             $m = new Model();
-            $datos = $m->dameEventos($fecha);
+            $datos = $m->dameEventos($fecha, $usuario);
             echo json_encode($datos);
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
@@ -245,7 +203,27 @@ class Controller
     public function nuevoEvento()
     {
         try {
-
+            $titulo = $_POST["titulo"];
+            $masDetalles = $_POST["masDetalles"];
+            $hora = $_POST["hora"];
+            $fecha = $_POST["fecha"];
+            $importancia = $_POST["importancia"];
+            $user = $_SESSION["id"];
+            $fechaCompleta = $fecha . " " . $hora;
+            $m = new Model();
+            echo $m->nuevoEvento($titulo, $masDetalles, $fechaCompleta, $importancia, $user) ? json_encode(true) : json_encode(false);
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
+    }
+    public function eliminarEvento()
+    {
+        try {
+            $id = $_POST["id"];
+            $m = new Model();
+            echo $m->eliminarEvento($id) ? json_encode(true) : json_encode(false);
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
         } catch (Error $e) {

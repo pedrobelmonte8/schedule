@@ -59,6 +59,8 @@ $(document).ready(() => {
         //Si todo a ido bien se hace la petición Ajax...
 
         if (flag) {
+            let date = localStorage.getItem("fechaClickada");
+            date = date.split("-").reverse().join("-");
             $.ajax({
                 type: "POST",
                 url: "index.php",
@@ -67,12 +69,22 @@ $(document).ready(() => {
                     "titulo": titulo,
                     "masDetalles": masDetalles,
                     "hora": hora,
-                    "importancia": importancia
+                    "importancia": importancia,
+                    "fecha": date
                 },
                 success: function(data) {
                     //Si todo va bien...
+                    console.log(data);
                     if (data) {
-                        console.log(data);
+                        //Vaciamos el Formulario
+                        $("#formModalTitulo").val("");
+                        $("#formModalDescription").val("");
+                        $("#formModalHora").val("");
+                        $("#CheckModal").prop("checked", false);
+                        //Cerramos el modal
+                        $("#modalNuevoEvento").modal("toggle");
+                        //Actualizamos las listas
+                        actualizarListas();
                     }
                 }
             });
@@ -81,6 +93,10 @@ $(document).ready(() => {
         return false;
     });
 
+
+    function modificarEvento() {
+
+    }
 
     //Flechas dias anterior y siguiente
     function diaAnterior() {
@@ -95,11 +111,12 @@ $(document).ready(() => {
         date1.setDate(date1.getDate() - 1);
         date2.setDate(date2.getDate() - 1);
         //Sumamos un mes para tener bien el formato
-        let date1FormatPHP = date1.getFullYear().toString() + "-" + (date1.getMonth() + 1).toString().padStart(2, "0") + "-" + date1.getDate().toString();
-        let date2FormatPHP = date2.getFullYear().toString() + "-" + (date2.getMonth() + 1).toString().padStart(2, "0") + "-" + date2.getDate().toString();
+        let date1FormatPHP = date1.getFullYear().toString() + "-" + (date1.getMonth() + 1).toString().padStart(2, "0") + "-" + date1.getDate().toString().padStart(2, "0");
+        let date2FormatPHP = date2.getFullYear().toString() + "-" + (date2.getMonth() + 1).toString().padStart(2, "0") + "-" + date2.getDate().toString().padStart(2, "0");
         //Ajax
         getListaFecha1(date1FormatPHP);
         getListaFecha2(date2FormatPHP);
+
     }
 
     function diaSiguiente() {
@@ -114,11 +131,50 @@ $(document).ready(() => {
         date1.setDate(date1.getDate() + 1);
         date2.setDate(date2.getDate() + 1);
         //Sumamos un mes para tener bien el formato
-        let date1FormatPHP = date1.getFullYear().toString() + "-" + (date1.getMonth() + 1).toString().padStart(2, "0") + "-" + date1.getDate().toString();
-        let date2FormatPHP = date2.getFullYear().toString() + "-" + (date2.getMonth() + 1).toString().padStart(2, "0") + "-" + date2.getDate().toString();
+        let date1FormatPHP = date1.getFullYear().toString() + "-" + (date1.getMonth() + 1).toString().padStart(2, "0") + "-" + date1.getDate().toString().padStart(2, "0");
+        let date2FormatPHP = date2.getFullYear().toString() + "-" + (date2.getMonth() + 1).toString().padStart(2, "0") + "-" + date2.getDate().toString().padStart(2, "0");
         //Ajax
         getListaFecha1(date1FormatPHP);
         getListaFecha2(date2FormatPHP);
+    }
+
+    function actualizarListas() {
+        let dateTarjeta1 = $("#actualDate").text();
+        let dateTarjeta2 = $("#nextDate").text();
+        let date1 = dateTarjeta1.split("-").reverse().join("-");
+        let date2 = dateTarjeta2.split("-").reverse().join("-");
+        date1 = new Date(date1);
+        date2 = new Date(date2);
+        let date1FormatPHP = date1.getFullYear().toString() + "-" + (date1.getMonth() + 1).toString().padStart(2, "0") + "-" + date1.getDate().toString().padStart(2, "0");
+        let date2FormatPHP = date2.getFullYear().toString() + "-" + (date2.getMonth() + 1).toString().padStart(2, "0") + "-" + date2.getDate().toString().padStart(2, "0");
+        //Ajax
+        getListaFecha1(date1FormatPHP);
+        getListaFecha2(date2FormatPHP);
+        //Añadimos los eventos dinamicamente...
+        $("#actualDateList").unbind("click", ".iconoEliminar");
+        $("#actualDateList").on("click", ".iconoEliminar", function() {
+            eliminarEvento(this);
+        });
+        $("#nextDateList").on("click", ".iconoEliminar", function() {
+            eliminarEvento(this);
+        });
+    }
+
+    function eliminarEvento(e) {
+        let id = $(e).closest(".elementList").attr("data-id");
+        //Funcion Ajax
+        $.ajax({
+            type: "POST",
+            url: "index.php",
+            data: {
+                ctl: "eliminarEvento",
+                id: id
+            },
+            success: function(data) {
+                alert("Exito");
+                actualizarListas();
+            }
+        });
     }
 
     function getListaFecha1(fecha) {
@@ -143,12 +199,20 @@ $(document).ready(() => {
                         "<p class='paragElementList'>" + datos[i][3] + " - " + datos[i].title + "</p>" +
                         "<div class='iconos'>" +
                         "<i class='fas fa-square importancia " + importancia + "'></i>" +
-                        "<i class='iconos fas fa-trash-alt'></i>" +
+                        "<i class='iconos fas fa-trash-alt iconoEliminar'></i>" +
                         "<i class='iconos fas fa-pencil-alt'></i>" +
                         "</div> </li>");
                 }
                 lista.append("<i class='fas fa-plus nuevoEvento' ></i>");
+                $(".nuevoEvento").unbind("click");
                 $(".nuevoEvento").on("click", function() {
+                    let fechaClickada;
+                    if ($(this).closest("ul").attr("id") == "actualDateList") {
+                        fechaClickada = $("#actualDate").text();
+                    } else if ($(this).closest("ul").attr("id") == "nextDateList") {
+                        fechaClickada = $("#nextDate").text();
+                    }
+                    localStorage.setItem("fechaClickada", fechaClickada);
                     abrirModal();
                 });
             }
@@ -177,12 +241,20 @@ $(document).ready(() => {
                         "<p class='paragElementList'>" + datos[i][3] + " - " + datos[i].title + "</p>" +
                         "<div class='iconos'>" +
                         "<i class='fas fa-square importancia " + importancia + "'></i>" +
-                        "<i class='iconos fas fa-trash-alt'></i>" +
+                        "<i class='iconos fas fa-trash-alt iconoEliminar'></i>" +
                         "<i class='iconos fas fa-pencil-alt'></i>" +
                         "</div> </li>");
                 }
                 lista.append("<i class='fas fa-plus nuevoEvento' ></i>");
-                $("#nuevoEvento").click(function() {
+                $(".nuevoEvento").unbind("click");
+                $(".nuevoEvento").on("click", function() {
+                    let fechaClickada;
+                    if ($(this).closest("ul").attr("id") == "actualDateList") {
+                        fechaClickada = $("#actualDate").text();
+                    } else if ($(this).closest("ul").attr("id") == "nextDateList") {
+                        fechaClickada = $("#nextDate").text();
+                    }
+                    localStorage.setItem("fechaClickada", fechaClickada);
                     abrirModal();
                 });
             }
@@ -190,9 +262,15 @@ $(document).ready(() => {
     }
     $("#anterior").click(function() {
         diaAnterior();
+
     });
     $("#siguiente").click(function() {
         diaSiguiente();
     });
-
+    actualizarListas();
+    /*  $(".iconoEliminar").unbind("click"); */
+    $(".iconoEliminar").on("click", function() {
+        alert("asd");
+        eliminarEvento(this);
+    });
 });

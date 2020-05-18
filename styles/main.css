@@ -26,6 +26,8 @@ body {
   height: 60px;
   width: 60px;
   border-radius: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .iconSettings,

@@ -13,10 +13,10 @@ class Model extends PDO
         $this->conexion->exec("set names utf8");
         $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
-    public function dameEventos($fecha)
+    public function dameEventos($fecha,$user)
     {
         try {
-            $consulta = "SELECT id, title,description,DATE_FORMAT(date,'%T'),importance,id_user from event WHERE date LIKE '%$fecha%' AND id_user='1'";
+            $consulta = "SELECT id, title,description,DATE_FORMAT(date,'%T'),importance,id_user from event WHERE date LIKE '%$fecha%' AND id_user=$user";
             $result = $this->conexion->query($consulta);
             return $result->fetchAll();
         } catch (Exception $e) {
@@ -28,15 +28,16 @@ class Model extends PDO
         }
     }
 
-    public function nuevoEvento($titulo, $description, $fecha, $hora)
+    public function nuevoEvento($titulo, $description, $fecha, $hora,$user)
     {
         try {
-            $consulta = "INSERT INTO event(title, description, date, importance) VALUES(?,?,?,?) ";
+            $consulta = "INSERT INTO event(title, description, date, importance,id_user) VALUES(?,?,?,?,?) ";
             $result = $this->conexion->prepare($consulta);
-            $result->bindParam(1, $name);
+            $result->bindParam(1, $titulo);
             $result->bindParam(2, $description);
             $result->bindParam(3, $fecha);
             $result->bindParam(4, $hora);
+            $result->bindParam(5, $user);
             if ($result->execute()) {
                 return true;
             } else {
@@ -51,11 +52,30 @@ class Model extends PDO
         }
     }
 
+    public function eliminarEvento($id)
+    {
+        try {
+            $consulta = "DELETE FROM event WHERE id=?";
+            $result = $this->conexion->prepare($consulta);
+            $result->bindParam(1, $id);
+            if ($result->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
     //Funciones relacionadas al registro
     public function intentaRegistro($name, $pass, $email, $img)
     {
         try {
-            $consulta = "INSERT INTO users (name, email, pass,permissions, img) VALUES (:name, :email, :pass, :permissions,:img)";
+            $consulta = "INSERT INTO users (name, email, pass,permissions, img, not_email) VALUES (:name, :email, :pass, :permissions,:img,:not_email)";
             $result = $this->conexion->prepare($consulta);
             $result->bindParam(':name', $name);
             $result->bindParam(':email', $email);
@@ -63,6 +83,7 @@ class Model extends PDO
             $result->bindParam(':pass', $passBD);
             $result->bindValue(':permissions', 1);
             $result->bindParam(':img', $img);
+            $result->bindValue(':not_email', 0);
             if ($result->execute()) {
                 return true;
             } else {

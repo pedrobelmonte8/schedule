@@ -19,7 +19,8 @@ $map = array(
     'configuracion' => array('controller' => 'Controller', 'action' => 'configuracion', 'acceso' => 1),
     'logout' => array('controller' => 'Controller', 'action' => 'logout', 'acceso' => 1),
     'getListaEventos'=>array('controller' => 'Controller', 'action' => 'getListaEventos', 'acceso' => 1),
-    'nuevoEvento'=>array('controller' => 'Controller', 'action' => 'nuevoEvento', 'acceso' => 1)
+    'nuevoEvento'=>array('controller' => 'Controller', 'action' => 'nuevoEvento', 'acceso' => 1),
+    'eliminarEvento'=>array('controller' => 'Controller', 'action' => 'eliminarEvento', 'acceso' => 1)
 );
 
 if (isset($_REQUEST['ctl'])) {
