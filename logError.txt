@@ -28,3 +28,6 @@ Call to undefined method Google_Client::checkRedirectCode()0.42777100 1589304954
 Call to undefined method Google_Client::checkRedirectCode()0.07069000 1589304960
 Call to a member function getAttributes() on array0.52815300 1589310762
 Call to a member function getAttributes() on array0.66206500 1589310775
+Call to a member function query() on null0.16140700 1589994063En (Model)
+update event set title='Prueba 1123132', description='Mas detalles' where id=15
+update event set title='Prueba 123', description='Mas detalles' where id=64

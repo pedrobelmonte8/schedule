@@ -13,7 +13,7 @@ class Model extends PDO
         $this->conexion->exec("set names utf8");
         $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
-    public function dameEventos($fecha,$user)
+    public function dameEventos($fecha, $user)
     {
         try {
             $consulta = "SELECT id, title,description,DATE_FORMAT(date,'%T'),importance,id_user from event WHERE date LIKE '%$fecha%' AND id_user=$user";
@@ -27,8 +27,45 @@ class Model extends PDO
             return false;
         }
     }
+    public function dameInfoEvento($id)
+    {
+        try {
+            $consulta = "SELECT title,description,DATE_FORMAT(date,'%H:%i'),DATE_FORMAT(date,'%Y-%m-%d'),importance from event WHERE id=$id";
+            $result = $this->conexion->query($consulta);
+            return $result->fetch();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
+    public function modificarEvento($id, $titulo, $detalles, $fecha, $importancia)
+    {
+        try {
+            /*  $consulta = "UPDATE event set title=? ,description=? ,date=? ,importance=? WHERE id=?"; */
+            $consulta = "UPDATE event set title='$titulo', description='$detalles', date='$fecha', importance='$importancia' WHERE id=$id";
+            /*  $result = $this->conexion->prepare($consulta);
+            $result->bindParam(1, $titulo);
+            $result->bindParam(2, $detalles);
+            $result->bindParam(3, $fecha);
+            $result->bindParam(4, $importancia);
+            $result->bindParam(5, $id); */
+           /*  error_log($consulta . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt"); */
+            /*  $result->execute(); */
+            $result = $this->conexion->query($consulta);
+            return $result->rowCount();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
 
-    public function nuevoEvento($titulo, $description, $fecha, $hora,$user)
+    public function nuevoEvento($titulo, $description, $fecha, $hora, $user)
     {
         try {
             $consulta = "INSERT INTO event(title, description, date, importance,id_user) VALUES(?,?,?,?,?) ";

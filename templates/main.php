@@ -50,7 +50,7 @@
                                 <textarea class="form-control" id="formModalDescription" rows="3"></textarea>
                             </div>
                             <div class="form-group">
-                            <label for="formModalHora">Título</label>
+                                <label for="formModalHora">Hora</label>
                                 <input type="time" class="form-control" id="formModalHora" aria-describedby="horaHelp" placeholder="Introduce la hora" required>
                             </div>
                             <div class="form-check">
@@ -66,7 +66,49 @@
                 </div>
             </div>
         </div>
-
+        <!-- Modal Modificar Evento -->
+        <div id="modalModificarEvento" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="fechaModal" class="modal-title">Modificar Evento</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body d-flex flex-column">
+                        <p>Rellene los campos correspondientes</p>
+                        <!-- Formulario del Modal -->
+                        <form id="formModalM">
+                            <div class="form-group">
+                                <label for="formModalTituloM">Título</label>
+                                <input type="text" class="form-control" id="formModalTituloM" aria-describedby="tituloHelp" placeholder="Introduce Título" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="formModalDescriptionM">Mas detalles</label>
+                                <textarea class="form-control" id="formModalDescriptionM" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="formModalHoraM">Hora</label>
+                                <input type="time" class="form-control" id="formModalHoraM" aria-describedby="horaHelp" placeholder="Introduce la hora" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="formModalFechaM">Fecha</label>
+                                <input type="date" class="form-control" id="formModalFechaM" aria-describedby="fechaHelp" placeholder="Introduce la fecha" min="2000-01-01" required>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="CheckModalM">
+                                <label class="form-check-label" for="CheckModalM">Importante</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <!-- Inicio Tarjeta 1 -->
             <div class="col-sm-4 mt-4 ml-4 p-4 hoja1">
@@ -75,16 +117,6 @@
                     <p id="actualDate"><?php echo isset($params['actDate']) ? $params['actDate'] : "error" ?></p>
                 </div>
                 <ul id="actualDateList">
-                    <!-- elementList Añadir Evento Click -->
-                    <!--  <li class="elementList" data-id="1">
-                        <p class="paragElementList" data-hour="12:00">12:00- Comida con la familia, ya no se que mas poner pero debo poner cosas hasta que salte de linea</p>
-                        <div class="iconos">
-                            <i class="far fa-square importancia"></i>
-                            <i class="iconos fas fa-trash-alt"></i>
-                            <i class="iconos fas fa-pencil-alt"></i>
-                        </div>
-                    </li> -->
-                    <?php echo isset($params['dataActDate']) ? $params['dataActDate'] : "error" ?>
                     <i class="fas fa-plus nuevoEvento"></i>
                 </ul>
             </div>
@@ -95,52 +127,23 @@
                     <p id="nextDate"><?php echo isset($params['nextDate']) ? $params['nextDate'] : "error" ?></p>
                 </div>
                 <ul id="nextDateList">
-                    <!--  <li>
-                        <p>12:00 - Comida</p>
-                        <div class="iconos"><i class="far fa-square importancia"></i><i class="iconos fas fa-trash-alt"></i><i class="iconos fas fa-pencil-alt"></i></div>
-                    </li> -->
-                    <?php echo isset($params['dataNextDate']) ? $params['dataNextDate'] : "error" ?>
                     <i class="fas fa-plus nuevoEvento"></i>
                 </ul>
             </div>
             <!-- Final Tarjeta 2 -->
             <!-- Inicio Ficha Detalles -->
             <div class="col-sm-3 mt-4 ml-4 p-4 details">
-                <!-- Empieza formulario Modificar -->
-                <form action="POST" id="details">
-                    <div class="form-group col ">
-                        <label for="formTittle" class="text-light">Título</label>
-                        <input class="form-control" type="text" name="" id="formTittle">
-                    </div>
-                    <div class="form-group col ">
-                        <label for="formDescription" class="text-light">Descripción</label>
-                        <textarea class="form-control" id="formDescription" rows="3"></textarea>
-                    </div>
-                    <div class="form-group col ">
-                        <label for="formDate" class="text-light">XX-XX-XXXX</label>
-                    </div>
-                    <div class="form-group col ">
-                        <select class="bg-success custom-select custom-select-lg mb-3">
-                            <option class="bg-danger" value="1">No Importante</option>
-                            <option class="bg-success" value="2">Importante</option>
-                        </select>
-                    </div>
-                    <br><br>
-                    <div class="details-save form-group col  d-flex">
-                        <input class="btn btn-info" type="button" value="Guardar">
-                        <button type="button" class="btn btn-dark align-self-end" id="button-search"><i class="fas fa-search"></i></button>
-                    </div>
-                </form>
                 <!-- Empieza formulario Buscar -->
                 <form id="search" action="POST">
                     <div class="form-group col ">
-                        <label for="formTittle" class="text-light">Buscar eventos concretos</label>
+                        <label for="formTittle" class="text-light">Buscar eventos</label>
                         <input class="form-control" type="text" name="" id="formTittle">
                     </div>
                     <div class="form-group col ">
                         <input class="btn btn-info" type="button" value="Buscar">
                     </div>
                 </form>
+                <div class="row"></div>
             </div>
             <!-- Final Ficha Detalles -->
         </div>

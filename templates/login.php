@@ -30,17 +30,23 @@
 
                             <div class="custom-control custom-checkbox mb-3">
                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">Recordar contrseña</label>
+                                <!--   <label class="custom-control-label" for="customCheck1">Recordar contrseña</label> -->
                             </div>
 
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="inputLogin">Iniciar sesión</button>
                             <!-- Link hacia el registro -->
-                            <a href="index.php?ctl=main" class="d-block text-center mt-2 small">Registro</a>
+                            <a href="index.php?ctl=registry" class="d-block text-center mt-2 small">Registro</a>
                             <hr class="my-4">
                             <button class="btn btn-lg btn-google btn-block text-uppercase" href="google.es" name="btnGoogle" disabled><i class="fab fa-google mr-2"></i> Iniciar con Google</button>
                         </form>
                     </div>
                 </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="mx-auto" id="errores">
+                <?php echo isset($params['msg']) ? $params['msg'] : "" ?>
             </div>
         </div>
     </div>

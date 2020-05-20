@@ -43,7 +43,6 @@ class Controller
                         </div>
                        ";
                 } else {
-                    print_r($validaciones);
                     foreach ($validaciones as $key => $errores) {
                         foreach ($errores as $error) {
                             $params['msg'] .= "<div class='error'>
@@ -190,6 +189,36 @@ class Controller
         }
     }
 
+    public function getEvento()
+    {
+        try {
+            $id = $_POST["id"];
+            $m = new Model();
+            $datos = $m->dameInfoEvento($id);
+            echo json_encode($datos);
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
+    }
+    public function modificarEvento()
+    {
+        try {
+            $m = new Model();
+            $id = $_POST["id"];
+            $titulo = $_POST["titulo"];
+            $detalles = $_POST["masDetalles"];
+            $importancia = $_POST["importancia"];
+            $fecha=$_POST["fecha"];
+            $datos = $m->modificarEvento($id, $titulo, $detalles, $fecha, $importancia);
+            echo json_encode($datos);
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
+    }
     public function notificaciones()
     {
         try {

@@ -159,10 +159,6 @@ body {
           justify-content: space-between;
 }
 
-.details #search {
-  display: none;
-}
-
 /* Flechas de cambio de días */
 .next-last {
   font-size: 60px;

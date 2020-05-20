@@ -82,3 +82,13 @@ body {
         color: black !important;
     }
 }
+
+#errores {
+    .error {
+        color: #D8000C;
+        background-color: rgb(223, 93, 93);
+        p {
+            padding: 3px;
+        }
+    }
+}

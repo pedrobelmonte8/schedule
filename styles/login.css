@@ -93,4 +93,13 @@ body {
 .btn-facebook:hover {
   color: black !important;
 }
+
+#errores .error {
+  color: #D8000C;
+  background-color: #df5d5d;
+}
+
+#errores .error p {
+  padding: 3px;
+}
 /*# sourceMappingURL=login.css.map */

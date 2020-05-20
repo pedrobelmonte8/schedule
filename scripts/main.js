@@ -1,8 +1,4 @@
 $(document).ready(() => {
-    $("#button-search").click(function() {
-        $("#details").hide();
-        $("#search").css("display", "block");
-    });
     //Botón LogOut
     function LogOut() {
         $.ajax({
@@ -22,9 +18,9 @@ $(document).ready(() => {
     });
 
     //Al clickar en cruz para crear nuevo Evento...
-    function abrirModal() {
+    function abrirModal(modal) {
         //Abro modal
-        $("#modalNuevoEvento").modal();
+        $(modal).modal();
     }
     //Arreglar Modal y LocalStorage
     $(".nuevoEvento").on("click", function() {
@@ -35,7 +31,7 @@ $(document).ready(() => {
             fechaClickada = $("#nextDate").text();
         }
         localStorage.setItem("fechaClickada", fechaClickada);
-        abrirModal();
+        $("#modalNuevoEvento").modal();
     });
 
     $("#formModal").submit(function() {
@@ -46,8 +42,6 @@ $(document).ready(() => {
         let importancia;
         let flag = true;
         $("#CheckModal").is(":checked") ? importancia = 1 : importancia = 0;
-        console.log(titulo + masDetalles + hora);
-        console.log(importancia);
         if (titulo == "") {
             alert("Complete el campo titulo");
             flag = false;
@@ -74,7 +68,6 @@ $(document).ready(() => {
                 },
                 success: function(data) {
                     //Si todo va bien...
-                    console.log(data);
                     if (data) {
                         //Vaciamos el Formulario
                         $("#formModalTitulo").val("");
@@ -88,13 +81,79 @@ $(document).ready(() => {
                     }
                 }
             });
-
+        }
+        return false;
+    });
+    $("#formModalM").submit(function() {
+        let titulo = $.trim($("#formModalTituloM").val());
+        let masDetalles = $.trim($("#formModalDescriptionM").val());
+        let hora = $.trim($("#formModalHoraM").val());
+        let fecha = $.trim($("#formModalFechaM").val());
+        fecha = fecha + " " + hora + ":00";
+        console.log(fecha);
+        let importancia;
+        $("#CheckModalM").is(":checked") ? importancia = 1 : importancia = 0;
+        let flag = true;
+        if (titulo == "") {
+            alert("Complete el campo titulo");
+            flag = false;
+        } else
+        if (hora == "") {
+            alert("Complete el campo hora");
+            flag = false;
+        } else if (fecha == "") {
+            alert("Complete el campo fecha");
+            flag = false;
+        }
+        if (flag) {
+            $.ajax({
+                type: "POST",
+                url: "index.php",
+                data: {
+                    "ctl": "modificarEvento",
+                    "titulo": titulo,
+                    "masDetalles": masDetalles,
+                    "hora": hora,
+                    "fecha": fecha,
+                    "importancia": importancia,
+                    "id": localStorage.getItem("idModificar")
+                },
+                success: function(data) {
+                    if (data) {
+                        actualizarListas();
+                        $("#modalModificarEvento").modal("toggle");
+                    }
+                }
+            });
         }
         return false;
     });
 
-
-    function modificarEvento() {
+    function modificarEvento(e) {
+        let id = $(e).closest(".elementList").attr("data-id");
+        localStorage.setItem("idModificar", id);
+        $("#formModalTituloM").val("");
+        $.ajax({
+            type: "POST",
+            url: "index.php",
+            data: {
+                "ctl": "dameInfoEvento",
+                "id": id
+            },
+            success: function(data) {
+                let datos = JSON.parse(data);
+                if (datos) {
+                    console.log(datos);
+                    console.log(datos[3]);
+                    $("#formModalTituloM").val(datos.title);
+                    $("#formModalDescriptionM").val(datos.description);
+                    $("#formModalHoraM").val(datos[2]);
+                    $("#formModalFechaM").val(datos[3]);
+                    datos.importance == 1 ? $("#CheckModalM").prop("checked", true) : $("#CheckModalM").prop("checked", false);
+                    abrirModal("#modalModificarEvento");
+                }
+            }
+        });
 
     }
 
@@ -151,12 +210,19 @@ $(document).ready(() => {
         getListaFecha1(date1FormatPHP);
         getListaFecha2(date2FormatPHP);
         //Añadimos los eventos dinamicamente...
-        $("#actualDateList").unbind("click", ".iconoEliminar");
+        $("#actualDateList").unbind("click");
+        $("#nextDateList").unbind("click");
         $("#actualDateList").on("click", ".iconoEliminar", function() {
             eliminarEvento(this);
         });
         $("#nextDateList").on("click", ".iconoEliminar", function() {
             eliminarEvento(this);
+        });
+        $("#actualDateList").on("click", ".iconoModificar", function() {
+            modificarEvento(this);
+        });
+        $("#nextDateList").on("click", ".iconoModificar", function() {
+            modificarEvento(this);
         });
     }
 
@@ -171,7 +237,6 @@ $(document).ready(() => {
                 id: id
             },
             success: function(data) {
-                alert("Exito");
                 actualizarListas();
             }
         });
@@ -200,7 +265,7 @@ $(document).ready(() => {
                         "<div class='iconos'>" +
                         "<i class='fas fa-square importancia " + importancia + "'></i>" +
                         "<i class='iconos fas fa-trash-alt iconoEliminar'></i>" +
-                        "<i class='iconos fas fa-pencil-alt'></i>" +
+                        "<i class='iconos fas fa-pencil-alt iconoModificar'></i>" +
                         "</div> </li>");
                 }
                 lista.append("<i class='fas fa-plus nuevoEvento' ></i>");
@@ -213,7 +278,7 @@ $(document).ready(() => {
                         fechaClickada = $("#nextDate").text();
                     }
                     localStorage.setItem("fechaClickada", fechaClickada);
-                    abrirModal();
+                    abrirModal("#modalNuevoEvento");
                 });
             }
         });
@@ -242,7 +307,7 @@ $(document).ready(() => {
                         "<div class='iconos'>" +
                         "<i class='fas fa-square importancia " + importancia + "'></i>" +
                         "<i class='iconos fas fa-trash-alt iconoEliminar'></i>" +
-                        "<i class='iconos fas fa-pencil-alt'></i>" +
+                        "<i class='iconos fas fa-pencil-alt iconoModificar'></i>" +
                         "</div> </li>");
                 }
                 lista.append("<i class='fas fa-plus nuevoEvento' ></i>");
@@ -255,7 +320,7 @@ $(document).ready(() => {
                         fechaClickada = $("#nextDate").text();
                     }
                     localStorage.setItem("fechaClickada", fechaClickada);
-                    abrirModal();
+                    abrirModal("#modalNuevoEvento");
                 });
             }
         });
@@ -268,9 +333,4 @@ $(document).ready(() => {
         diaSiguiente();
     });
     actualizarListas();
-    /*  $(".iconoEliminar").unbind("click"); */
-    $(".iconoEliminar").on("click", function() {
-        alert("asd");
-        eliminarEvento(this);
-    });
 });
