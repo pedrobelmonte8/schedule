@@ -31,10 +31,10 @@
                                 <input name="inputPassword" type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
                             </div>
                             <div class="form-label-group">
-                                <input name="inputRepPassword" type="password" id="inputRepPassword" class="form-control" placeholder="Repetir Contraseña" required>
+                                <input name="inputRepPassword" type="password" id="inputRepPassword" class="form-control" required>
                             </div>
                             <div class="form-label-group">
-                                <input name="inputFile" type="file" id="inputFile" class="form-control" placeholder="Repetir Contraseña" required>
+                                <input name="inputFile" type="file" id="inputFile" class="form-control" placeholder="Imagen de Perfil" required>
                             </div>
 
                             <button name="inputRegister" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrarse</button>
