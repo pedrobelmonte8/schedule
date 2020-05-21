@@ -57,7 +57,7 @@ function campoImagen($nombre, $dir, &$errores, $extensionesValidas, $usuario)
 		$directorioTemp = $_FILES[$nombre]['tmp_name'];
 		 $extension = $_FILES[$nombre]['type'];
             if (!in_array($extension, $extensionesValidas)) {
-                $errores[$nombre] = "La extensión del archivo no es válida o no se ha subido ningún archivo";
+                $errores[$nombre] = "La extensión del archivo no es válida o no se ha subido ningún archivo $directorioTemp";
                 return 0;
             }
 

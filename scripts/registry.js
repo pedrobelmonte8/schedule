@@ -15,7 +15,7 @@ $(document).ready(() => {
             }
             //Formato del Email
             if (!email.match(/^[a-z]+([\.]?[a-z0-9_-]+)*@[a-z]+([\.-]+[a-z0-9]+)*\.[a-z]{2,}$/)) {
-                errores.push("<div class='error'><p><i class='fa fa-times-circle'></i>El campo $campo debe tener el siguiente formato de email usuario@servidor.tipo</p></div>");
+                errores.push("<div class='error'><p><i class='fa fa-times-circle'></i>El campo email debe tener el siguiente formato de email usuario@servidor.tipo</p></div>");
             }
             //Formato de la Contraseña
             if (!pass1.match(/^[a-z0-9][a-z0-9_\-@]{7,20}$/i)) {

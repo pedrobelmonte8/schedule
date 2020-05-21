@@ -1,0 +1,166 @@
+@charset "UTF-8";
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
+
+body {
+  background: #ff8800;
+  background: -webkit-gradient(linear, left top, right top, from(#dd452a), to(#ff8533));
+  background: linear-gradient(to right, #dd452a, #ff8533);
+}
+
+/* Cabecera */
+.contDatos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contDatos img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.iconSettings,
+.icon {
+  color: white;
+  margin: 7px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.iNoti:hover {
+  color: #e2e21e;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.iConf:hover {
+  color: grey;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+#buttonLogOut:hover {
+  color: #e92323;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+/* Final Cabecera */
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+  padding: 2rem;
+}
+
+.form-signin {
+  width: 100%;
+}
+
+.form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.form-label-group > input,
+.form-label-group > label {
+  padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group input {
+  height: auto;
+  border-radius: 2rem;
+}
+
+.form-label-group > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  -webkit-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+}
+
+#errores .error {
+  color: #D8000C;
+  background-color: #df5d5d;
+}
+
+#errores .error p {
+  padding: 3px;
+}
+
+.inputSettings {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid;
+  padding: 1em 0 .8em;
+  font-size: 18px;
+  font-family: inherit;
+  font-weight: 300;
+  line-height: 1.5;
+  color: inherit;
+  outline: none;
+}
+
+/* Código para que queden bien los estilos del input file */
+/* 
+
+#formSettingsImg {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+label[for="formSettingsImg"] {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #106BA0;
+    display: inline-block;
+    transition: all .5s;
+    cursor: pointer;
+    padding: 15px 40px !important;
+    text-transform: uppercase;
+    width: fit-content;
+    text-align: center;
+} */
+/*# sourceMappingURL=settings.css.map */

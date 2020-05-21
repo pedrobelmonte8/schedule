@@ -7,7 +7,6 @@ class Controller
 {
     public function login()
     {
-
         try {
             $sesion = new Sesiones();
             //Si la sesion está iniciada no le dejamos entrar al Login
@@ -165,6 +164,7 @@ class Controller
                 echo "Error";
             } */
             $session = new Sesiones;
+            $session->caduca();
             //Cambiamos formato a la fecha para hacer la consulta
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
@@ -180,6 +180,8 @@ class Controller
             $fecha = $_POST["fechaActual"];
             $usuario = $_SESSION["id"];
             $m = new Model();
+            $session = new Sesiones;
+            $session->caduca();
             $datos = $m->dameEventos($fecha, $usuario);
             echo json_encode($datos);
         } catch (Exception $e) {
@@ -194,6 +196,8 @@ class Controller
         try {
             $id = $_POST["id"];
             $m = new Model();
+            $session = new Sesiones;
+            $session->caduca();
             $datos = $m->dameInfoEvento($id);
             echo json_encode($datos);
         } catch (Exception $e) {
@@ -206,11 +210,13 @@ class Controller
     {
         try {
             $m = new Model();
+            $session = new Sesiones;
+            $session->caduca();
             $id = $_POST["id"];
             $titulo = $_POST["titulo"];
             $detalles = $_POST["masDetalles"];
             $importancia = $_POST["importancia"];
-            $fecha=$_POST["fecha"];
+            $fecha = $_POST["fecha"];
             $datos = $m->modificarEvento($id, $titulo, $detalles, $fecha, $importancia);
             echo json_encode($datos);
         } catch (Exception $e) {
@@ -222,6 +228,8 @@ class Controller
     public function notificaciones()
     {
         try {
+            $session = new Sesiones;
+            $session->caduca();
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
         } catch (Error $e) {
@@ -229,9 +237,24 @@ class Controller
         }
         require 'templates/notifications.php';
     }
+    public function changePassword()
+    {
+        try {
+            $session = new Sesiones;
+            $session->caduca();
+            $m = new Model();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
+        require 'templates/changepassword.php';
+    }
     public function nuevoEvento()
     {
         try {
+            $session = new Sesiones;
+            $session->caduca();
             $titulo = $_POST["titulo"];
             $masDetalles = $_POST["masDetalles"];
             $hora = $_POST["hora"];
@@ -250,6 +273,8 @@ class Controller
     public function eliminarEvento()
     {
         try {
+            $session = new Sesiones;
+            $session->caduca();
             $id = $_POST["id"];
             $m = new Model();
             echo $m->eliminarEvento($id) ? json_encode(true) : json_encode(false);
@@ -262,12 +287,62 @@ class Controller
     public function configuracion()
     {
         try {
+            $session = new Sesiones;
+            $session->caduca();
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
         } catch (Error $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
         }
         require 'templates/settings.php';
+    }
+
+    public function cargarDatosUsuario()
+    {
+        try {
+            $session = new Sesiones;
+            $session->caduca();
+            $m = new Model();
+            $datos = $m->dameInfoUsuario($_SESSION["id"]);
+            echo json_encode($datos);
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
+    }
+    public function cambiarDatosUsuario()
+    {
+        try {
+            $session = new Sesiones;
+            $session->caduca();
+            $m = new Model();
+           /* Código para que funcione la subida de archivos, no he conseguido hacerlo, existe un problema , pero no se localizarlo, supongo que será tema del Ajax o Cliente-Servidor */
+            /* $errores = [];
+             if ($_POST["img"] == 0) {
+                $datos = $m->setInfoUsuario($_SESSION["id"], $_POST["user"], $_POST["email"], $_POST["notEmail"]);
+            } else {
+                $foto = campoImagen('formSettingsImg', './images/', $errores, Config::$extensionesValidas, $_POST["user"]);
+                if (empty($errores)) {
+                    $datos = $m->setInfoUsuario($_SESSION["id"], $_POST["user"], $_POST["email"], $_POST["notEmail"], $foto);
+                    error_log("Entro en empty" . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+                } else {
+                    foreach ($errores as $error) {
+                        error_log($error . " " . microtime() . $_SESSION["id"] . $_POST["user"] . $_POST["email"] . $_POST["notEmail"] . 'Foto' . PHP_EOL, 3, "logException.txt");
+                    }
+                    $datos = false;
+                }
+            } */
+            $datos = $m->setInfoUsuario($_SESSION["id"], $_POST["user"], $_POST["email"], $_POST["notEmail"]);
+            if($datos){
+                $session->cambioDatosDeSesion($_POST["user"]);
+            }
+            echo json_encode($datos);
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
     }
 
     public function logout()

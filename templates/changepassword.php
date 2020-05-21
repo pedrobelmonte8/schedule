@@ -29,34 +29,17 @@
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Configuración</h5>
-                        <form id="formSettings" method="POST" enctype="multipart/form-data">
+                        <form id="formModalM">
                             <div class="form-group">
-                                <label for="formSettingsUser">Nombre de Usuario</label>
-                                <input type="text" class="inputSettings" id="formSettingsUser" aria-describedby="userHelp" placeholder="Introduce Nombre de Usuario" required>
+                                <label for="formSettingsPass">Cambiar Contraseña</label>
+                                <input type="password" class="inputSettings" id="formSettingsPassActual" aria-describedby="passHelp" placeholder="Introduce Contraseña Actual" required>
+                                <input type="password" class="inputSettings" id="formSettingsPass" aria-describedby="passHelp" placeholder="Introduce Nueva Contraseña" required>
+                                <input type="password" class="inputSettings" id="formSettingsPass2" aria-describedby="passHelp" placeholder="Repite Contraseña" required>
                             </div>
-                            <div class="form-group">
-                                <label for="formSettingsEmail">Correo Electrónico</label>
-                                <input type="text" class="inputSettings" id="formSettingsEmail" aria-describedby="emailHelp" placeholder="Introduce Correo Electrónico" required>
-                            </div>
-                            <div class="form-check form-group">
-                                <input type="checkbox" class="form-check-input" id="formSettingsNotEmail">
-                                <label class="form-check-label" for="formSettingsNotEmail">Notificaciones Email</label>
-                                <small id="emailHelp" class="form-text text-muted">Si lo marca recibirá periodicamente notificaciones a su email con los eventos que haya marcado como importantes</small>
-                            </div>
-                            <!-- <div class="form-group">
-                                <label for="formSettingsImg"><i class="fas fa-upload"></i> <span class="formSettingsImgSpan">Cambiar Imagen de Perfil</span></label>
-                                    <input name="formSettingsImg" type="file" id="inputFile" class="form-control" placeholder="Imagen de Perfil" required>
-                                    <span class="formSettingsImg"></span>
-                            </div> -->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
                         </form>
-                        <div class="row col">
-                            <a href="index.php?ctl=changepassword">
-                                <button class="btn btn-danger">Cambiar Contraseña</button>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -71,7 +54,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="scripts/settings.js"></script>
+    <!-- <script src="scripts/settings.js"></script> -->
 </body>
 
 </html>

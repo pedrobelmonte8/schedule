@@ -17,7 +17,7 @@
 <body>
     <!-- Cabecera -->
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Organízate</a>
+        <a class="navbar-brand" href="index.php?ctl=main">Organízate</a>
         <div class="contDatos">
             <img src="<?php echo isset($_SESSION['img']) ? $_SESSION["img"] : "" ?>" alt="">
             <h3 class="text-light m-3"> <?php echo isset($_SESSION['user']) ? $_SESSION['user'] : "" ?></h3>
@@ -57,7 +57,8 @@
                                 <input type="checkbox" class="form-check-input" id="CheckModal">
                                 <label class="form-check-label" for="CheckModal">Importante</label>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -100,7 +101,7 @@
                                 <input type="checkbox" class="form-check-input" id="CheckModalM">
                                 <label class="form-check-label" for="CheckModalM">Importante</label>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>
                     </div>
                     <div class="modal-footer">

@@ -1,133 +1,140 @@
-        * {
-            box-sizing: border-box;
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: #ff8800;
+    background: linear-gradient(to right, rgb(221, 69, 42), rgb(255, 133, 51));
+}
+
+
+/* Cabecera */
+
+.contDatos {
+    display: flex;
+    align-items: center;
+    img {
+        height: 60px;
+        width: 60px;
+        border-radius: 50px;
+        object-fit: cover;
+    }
+}
+
+.iconSettings,
+.icon {
+    color: white;
+    margin: 7px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.iNoti {
+    &:hover {
+        color: rgb(226, 226, 30);
+        transition: 0.5s;
+    }
+}
+
+.iConf {
+    &:hover {
+        color: grey;
+        transition: 0.5s;
+    }
+}
+
+#buttonLogOut {
+    &:hover {
+        color: rgb(233, 35, 35);
+        transition: 0.5s;
+    }
+}
+
+
+/* Final Cabecera */
+
+.hoja1::-webkit-scrollbar {
+    display: none;
+}
+
+.hoja2::-webkit-scrollbar {
+    display: none;
+}
+
+.hoja1,
+.hoja2 {
+    height: 800px;
+    background-color: rgb(245, 218, 178);
+    font-family: 'Handlee', cursive;
+    font-size: 1.2rem;
+    overflow: scroll;
+    ul {
+        overflow: hidden;
+        p {
             margin: 0px;
-            padding: 0px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        
-        body {
-            background: #ff8800;
-            background: linear-gradient(to right, rgb(221, 69, 42), rgb(255, 133, 51));
+        .iconos {
+            display: inline-flex;
+            .importante {
+                color: red;
+            }
+            .no-importante {
+                color: rgb(0, 252, 38);
+            }
         }
-        /* Cabecera */
-        
-        .contDatos {
+        i {
+            margin: 5px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        li {
             display: flex;
-            align-items: center;
-            img {
-                height: 60px;
-                width: 60px;
-                border-radius: 50px;
-                object-fit: cover;
-            }
-        }
-        
-        .iconSettings,
-        .icon {
-            color: white;
-            margin: 7px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-        
-        .iNoti {
+            justify-content: space-between;
+            list-style: none;
+            margin: 5px;
+            border-bottom: 1px solid black;
             &:hover {
-                color: rgb(226, 226, 30);
-                transition: 0.5s;
+                cursor: pointer;
+            }
+            i {
+                float: right;
+                margin: 5px;
+                /*    &:hover {} */
             }
         }
-        
-        .iConf {
-            &:hover {
-                color: grey;
-                transition: 0.5s;
-            }
+    }
+}
+
+.hoja1 {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.hoja2 {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.details {
+    height: 500px;
+    background-color: rgb(30, 32, 42);
+    #details {
+        .details-save {
+            justify-content: space-between;
         }
-        
-        #buttonLogOut {
-            &:hover {
-                color: rgb(233, 35, 35);
-                transition: 0.5s;
-            }
-        }
-        
-        .hoja1::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .hoja2::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .hoja1,
-        .hoja2 {
-            height: 800px;
-            background-color: rgb(245, 218, 178);
-            font-family: 'Handlee', cursive;
-            font-size: 1.2rem;
-            overflow: scroll;
-            ul {
-                overflow: hidden;
-                p {
-                    margin: 0px;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-                .iconos {
-                    display: inline-flex;
-                    .importante {
-                        color: red;
-                    }
-                    .no-importante {
-                        color: rgb(0, 252, 38);
-                    }
-                }
-                i {
-                    margin: 5px;
-                    &:hover {
-                        cursor: pointer;
-                    }
-                }
-                li {
-                    display: flex;
-                    justify-content: space-between;
-                    list-style: none;
-                    margin: 5px;
-                    border-bottom: 1px solid black;
-                    &:hover {
-                        cursor: pointer;
-                    }
-                    i {
-                        float: right;
-                        margin: 5px;
-                        /*    &:hover {} */
-                    }
-                }
-            }
-        }
-        
-        .hoja1 {
-            border-top-left-radius: 1rem;
-            border-bottom-left-radius: 1rem;
-        }
-        
-        .hoja2 {
-            border-top-right-radius: 1rem;
-            border-bottom-right-radius: 1rem;
-        }
-        
-        .details {
-            height: 500px;
-            background-color: rgb(30, 32, 42);
-            #details {
-                .details-save {
-                    justify-content: space-between;
-                }
-            }
-        }
-        /* Flechas de cambio de días */
-        
-        .next-last {
-            font-size: 60px;
-            cursor: pointer;
-        }
+    }
+}
+
+
+/* Flechas de cambio de días */
+
+.next-last {
+    font-size: 60px;
+    cursor: pointer;
+}

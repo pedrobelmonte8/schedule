@@ -22,7 +22,10 @@ $map = array(
     'nuevoEvento'=>array('controller' => 'Controller', 'action' => 'nuevoEvento', 'acceso' => 1),
     'eliminarEvento'=>array('controller' => 'Controller', 'action' => 'eliminarEvento', 'acceso' => 1),
     'dameInfoEvento'=>array('controller' => 'Controller', 'action' => 'getEvento', 'acceso' => 1),
-    'modificarEvento'=>array('controller' => 'Controller', 'action' => 'modificarEvento', 'acceso' => 1)
+    'modificarEvento'=>array('controller' => 'Controller', 'action' => 'modificarEvento', 'acceso' => 1),
+    'changepassword' => array('controller' => 'Controller', 'action' => 'changePassword', 'acceso' => 1),
+    'cargarDatosUsuario' => array('controller' => 'Controller', 'action' => 'cargarDatosUsuario', 'acceso' => 1),
+    'cambiarDatosUsuario' => array('controller' => 'Controller', 'action' => 'cambiarDatosUsuario', 'acceso' => 1)
 );
 
 if (isset($_REQUEST['ctl'])) {

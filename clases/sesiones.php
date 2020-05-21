@@ -39,6 +39,19 @@ class Sesiones
             header('Location: index.php?ctl=error');
         }
     }
+    public function cambioDatosDeSesion($user)
+    {
+        try {
+            $_SESSION['user'] = $user;
+            $this->usuario = $user;
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+            header('Location: index.php?ctl=error');
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            header('Location: index.php?ctl=error');
+        }
+    }
     public function destruir_sesion()
     {
         try {
@@ -55,7 +68,7 @@ class Sesiones
     public function caduca()
     {
         try {
-            // 5 segundos
+            // 10 minutos
             $inactividad = 600;
             if (isset($_SESSION["timeout"])) {
                 $session = time() - $_SESSION["timeout"];
@@ -67,7 +80,7 @@ class Sesiones
             }
             $_SESSION["timeout"] = time();
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logException.txt");
             header('Location: index.php?ctl=error');
         } catch (Error $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");

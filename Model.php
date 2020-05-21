@@ -13,6 +13,34 @@ class Model extends PDO
         $this->conexion->exec("set names utf8");
         $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
+    public function dameInfoUsuario($id)
+    {
+        try {
+            $consulta = "SELECT * FROM users WHERE id=$id";
+            $result = $this->conexion->query($consulta);
+            return $result->fetch();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
+    public function setInfoUsuario($id, $user, $email, $not_email, $img = 0)
+    {
+        try {
+            $consulta = "UPDATE users set name='$user',email='$email',not_email='$not_email' WHERE id=$id";
+            $result = $this->conexion->query($consulta);
+            return $result->rowCount();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
     public function dameEventos($fecha, $user)
     {
         try {
@@ -52,7 +80,7 @@ class Model extends PDO
             $result->bindParam(3, $fecha);
             $result->bindParam(4, $importancia);
             $result->bindParam(5, $id); */
-           /*  error_log($consulta . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt"); */
+            /*  error_log($consulta . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt"); */
             /*  $result->execute(); */
             $result = $this->conexion->query($consulta);
             return $result->rowCount();
