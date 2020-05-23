@@ -1,7 +1,10 @@
 <?php
 
-/* require 'Model.php'; */
+/* require '../Model.php'; */
 
+use PHPMailer\PHPMailer\PHPMailer;
+require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require 'vendor/phpmailer/phpmailer/src/SMTP.php';
 function getUsersEmail()
 {
     try {
@@ -51,11 +54,37 @@ function setEventsExpireTomorrow($arrayEventos)
         return false;
     }
 }
-function enviamosSpam($arrayUsuarios){
+function enviamosSpam($arrayUsuarios)
+{
     try {
         $m = new Model();
-        foreach ($arrayUsuarios as $usuarios => $usuario) {
+        /*  foreach ($arrayUsuarios as $usuarios => $usuario) {
             $m->setEventsExpireTomorrow($usuario);
+        } */
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+
+        //Configuracion servidor mail
+        $mail->From = "schedulegroupss@gmail.com"; //remitente
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'tls'; //seguridad
+        $mail->Host = "smtp.gmail.com"; // servidor smtp
+        $mail->Port = 587; //puerto
+        $mail->Username = 'schedulegroupss@gmail.com'; //nombre usuario
+        $mail->Password = 'AdministradorAbastos'; //contraseña
+        //Agregar destinatario
+        $mail->AddAddress("pedrojuan36022@gmail.com");
+        $mail->Subject = "Mensaje de prueba Aplicación";
+        $mail->Body = "Cuerpo del Mensaje";
+        if($mail->Send()){
+            echo "Exito";
+            error_log("Se ha enviado el correo correctamente" .date("Y-m-d H:i:s"). PHP_EOL, 3, "logErrorCron.txt");
+        }else{
+            echo "Error";
+            error_log("No se ha enviado el correo correctamente" .date("Y-m-d H:i:s"). PHP_EOL, 3, "logErrorCron.txt");
+            /* error_log($mail . PHP_EOL, 3, "logErrorCron.txt"); */
+           /* print_r($mail); */
         }
     } catch (Exception $e) {
         error_log($e->getMessage() . microtime() . '' . PHP_EOL, 3, "logErrorCron.txt");
@@ -63,10 +92,11 @@ function enviamosSpam($arrayUsuarios){
     } catch (Error $e) {
         error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logErrorCron.txt");
         return false;
-    }
+    } 
 }
 $usuarios = getUsersEmail();
 print_r($usuarios);
 $eventos = getEventsExpireTomorrow();
 setEventsExpireTomorrow($eventos);
 /* print_r($eventos[1]); */
+enviamosSpam(1);
