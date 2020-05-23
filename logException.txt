@@ -70,3 +70,6 @@ SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not ma
 SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '? ,description=? ,date=? ,importance=? WHERE id=?' at line 10.27090100 1589994907En (Model)
 SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens0.24535400 1589995086En (Model)
 La extensión del archivo no es válida o no se ha subido ningún archivo  0.73172000 159008894516fernandofernando@gmail.com0Foto
+.SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '15-83' for key 'id_user'0.32423700 1590250977En (Model:setEventsExpireTomorrow)
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '15-83' for key 'id_user'0.60653400 1590251342En (Model:setEventsExpireTomorrow)
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '15-83' for key 'id_user'0.01840500 1590251364En (Model:setEventsExpireTomorrow)

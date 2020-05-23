@@ -181,4 +181,54 @@ class Model extends PDO
             return false;
         }
     }
+
+    //Funciones relacionadas con el Script diario
+    public function getUsersNotEmail()
+    {
+        try {
+            $consulta = "SELECT id FROM users WHERE not_email=1";
+            $result = $this->conexion->query($consulta);
+            return $result->fetchAll();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
+    public function getEventsExpireTomorrow($date)
+    {
+        try {
+            $consulta = "SELECT * FROM event WHERE date like '%$date%' and importance=1";
+            $result = $this->conexion->query($consulta);
+            return $result->fetchAll();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:setEventsExpireTomorrow)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:setEventsExpireTomorrow)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
+    public function setEventsExpireTomorrow($arrayEvento)
+    {
+        try {
+            $consulta = "INSERT INTO notifications (id_user, id_event, title, description, date) VALUES(?,?,?,?,?)";
+            
+            $result = $this->conexion->prepare($consulta);
+            $result->bindParam(1,$arrayEvento["id_user"]);
+            $result->bindParam(2,$arrayEvento["id"]);
+            $result->bindParam(3,$arrayEvento["title"]);
+            $result->bindParam(4,$arrayEvento["description"]);
+            $result->bindParam(5,$arrayEvento["date"]);
+            return $result->execute();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:setEventsExpireTomorrow)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
 }

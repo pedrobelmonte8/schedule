@@ -236,7 +236,9 @@ class Controller
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
         }
         require 'templates/notifications.php';
+        include 'scripts/cronJob.php';
     }
+
     public function changePassword()
     {
         try {
