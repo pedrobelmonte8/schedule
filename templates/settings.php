@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles/settings.css">
     <link rel="stylesheet" href="libs\bootstrap-4.4.1-dist\css\bootstrap.css">
     <script src="https://kit.fontawesome.com/32099913fe.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Configuración</title>
 </head>
 <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
 

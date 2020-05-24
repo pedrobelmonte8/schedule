@@ -228,8 +228,14 @@ class Controller
     public function notificaciones()
     {
         try {
+            $params = array(
+                'notificaciones' => array()
+            );
             $session = new Sesiones;
             $session->caduca();
+            $m=new Model();
+            print_r($m->getNotificaciones($_SESSION["id"]));
+            $params["notificaciones"];
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
         } catch (Error $e) {

@@ -216,7 +216,35 @@ class Model extends PDO
             return false;
         }
     }
-
+    //Funciones relacionadas con las notificaciones
+    public function getNotificaciones($id)
+    {
+        try {
+            $consulta = "SELECT id,title,date FROM notifications WHERE id=$id order by date desc";
+            $result = $this->conexion->query($consulta);
+            return $result->fetchAll();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
+    public function eliminarNotificacion($id)
+    {
+        try {
+            $consulta = "DELETE FROM notifications WHERE id=$id";
+            $result = $this->conexion->query($consulta);
+            return $result->fetchAll();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
     //Funciones relacionadas con el Script diario
     public function getUsersNotEmail()
     {

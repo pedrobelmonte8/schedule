@@ -1,0 +1,99 @@
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
+
+body {
+  background: #ff8800;
+  background: -webkit-gradient(linear, left top, right top, from(#dd452a), to(#ff8533));
+  background: linear-gradient(to right, #dd452a, #ff8533);
+}
+
+/* Cabecera */
+.contDatos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contDatos img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.iconSettings,
+.icon {
+  color: white;
+  margin: 7px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.iNoti:hover {
+  color: #e2e21e;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.iConf:hover {
+  color: grey;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+#buttonLogOut:hover {
+  color: #e92323;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+/* Final Cabecera */
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+  padding: 2rem;
+}
+
+li {
+  background-color: ghostwhite !important;
+  border-radius: 5px !important;
+}
+
+#errores .error {
+  color: #D8000C;
+  background-color: #df5d5d;
+}
+
+#errores .error p {
+  padding: 3px;
+}
+
+.inputSettings {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid;
+  padding: 1em 0 .8em;
+  font-size: 18px;
+  font-family: inherit;
+  font-weight: 300;
+  line-height: 1.5;
+  color: inherit;
+  outline: none;
+}
+/*# sourceMappingURL=notifications.css.map */

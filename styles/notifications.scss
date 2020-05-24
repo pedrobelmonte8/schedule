@@ -1,0 +1,97 @@
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: .75rem;
+}
+
+body {
+    background: #ff8800;
+    background: linear-gradient(to right, rgb(221, 69, 42), rgb(255, 133, 51));
+}
+
+
+/* Cabecera */
+
+.contDatos {
+    display: flex;
+    align-items: center;
+    img {
+        height: 60px;
+        width: 60px;
+        border-radius: 50px;
+        object-fit: cover;
+    }
+}
+
+.iconSettings,
+.icon {
+    color: white;
+    margin: 7px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.iNoti {
+    &:hover {
+        color: rgb(226, 226, 30);
+        transition: 0.5s;
+    }
+}
+
+.iConf {
+    &:hover {
+        color: grey;
+        transition: 0.5s;
+    }
+}
+
+#buttonLogOut {
+    &:hover {
+        color: rgb(233, 35, 35);
+        transition: 0.5s;
+    }
+}
+
+
+/* Final Cabecera */
+
+.card-signin {
+    border: 0;
+    border-radius: 1rem;
+    .card-title {
+        margin-bottom: 2rem;
+        font-weight: 300;
+        font-size: 1.5rem;
+    }
+    .card-body {
+        padding: 2rem;
+    }
+}
+
+li {
+    background-color: ghostwhite !important;
+    border-radius: 5px !important;
+}
+
+#errores {
+    .error {
+        color: #D8000C;
+        background-color: rgb(223, 93, 93);
+        p {
+            padding: 3px;
+        }
+    }
+}
+
+.inputSettings {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid;
+    padding: 1em 0 .8em;
+    font-size: 18px;
+    font-family: inherit;
+    font-weight: 300;
+    line-height: 1.5;
+    color: inherit;
+    outline: none;
+}

@@ -125,3 +125,4 @@ SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '15-83' fo
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '15-85' for key 'id_user'0.99829300 1590258798En (Model:setEventsExpireTomorrow)
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '15-83' for key 'id_user'0.22056900 1590258808En (Model:setEventsExpireTomorrow)
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '15-85' for key 'id_user'0.32192300 1590258808En (Model:setEventsExpireTomorrow)
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE id=15' at line 10.64124200 1590349491En (Model:intentaRegistro)

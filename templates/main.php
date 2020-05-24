@@ -11,7 +11,7 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
 </style>
-<title>Document</title>
+<title>Organízate</title>
 </head>
 
 <body>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="CheckModal">
-                                <label class="form-check-label" for="CheckModal">Importante</label>
+                                <label class="form-check-label" for="CheckModal">Recuérdamelo</label>
                             </div>
                             <br>
                             <button type="submit" class="btn btn-primary">Guardar</button>
@@ -99,7 +99,7 @@
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="CheckModalM">
-                                <label class="form-check-label" for="CheckModalM">Importante</label>
+                                <label class="form-check-label" for="CheckModalM">Recuérdamelo</label>
                             </div>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>
