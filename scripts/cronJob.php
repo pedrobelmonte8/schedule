@@ -1,10 +1,13 @@
 <?php
 
-/* require '../Model.php'; */
+ require '../Model.php'; 
 
 use PHPMailer\PHPMailer\PHPMailer;
-require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require 'vendor/phpmailer/phpmailer/src/SMTP.php';
+
+/* use PHPMailer\PHPMailer\Exception; */
+require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require '../vendor/phpmailer/phpmailer/src/SMTP.php';
+require '../vendor/phpmailer/phpmailer/src/Exception.php';
 function getUsersEmail()
 {
     try {
@@ -100,3 +103,4 @@ $eventos = getEventsExpireTomorrow();
 setEventsExpireTomorrow($eventos);
 /* print_r($eventos[1]); */
 enviamosSpam(1);
+echo "hey";

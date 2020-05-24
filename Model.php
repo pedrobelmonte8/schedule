@@ -182,6 +182,41 @@ class Model extends PDO
         }
     }
 
+
+    //Funciones relacionadas con cambiar contraseña desde Settings
+    public function cambiarContraseña($old, $new, $id)
+    {
+        try {
+            //Primero comprobamos que la contraseña antigua es correcta
+            $oldBD = encriptar_contraseña($old);
+            $consulta = "SELECT pass from users WHERE id=:id";
+            $result = $this->conexion->prepare($consulta);
+            $result->bindParam(':id', $id);
+            $result->execute();
+            $flag = $result->fetch();
+            if ($flag["pass"] == $oldBD) {
+                $consulta = "UPDATE users set pass=:pass WHERE id=:id";
+                $result = $this->conexion->prepare($consulta);
+                $newBD = encriptar_contraseña($new);
+                $result->bindParam(':pass', $newBD);
+                $result->bindParam(':id', $id);
+                $result->execute();
+                $flag = $result->rowCount();
+                return $flag;
+            } else {
+                return 0;
+            }
+            /*  $result->bindParam(':old', $old);
+            $result->bindParam(':new', $new); */
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'Consulta: ' . $consulta . '' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
+
     //Funciones relacionadas con el Script diario
     public function getUsersNotEmail()
     {
@@ -215,13 +250,13 @@ class Model extends PDO
     {
         try {
             $consulta = "INSERT INTO notifications (id_user, id_event, title, description, date) VALUES(?,?,?,?,?)";
-            
+
             $result = $this->conexion->prepare($consulta);
-            $result->bindParam(1,$arrayEvento["id_user"]);
-            $result->bindParam(2,$arrayEvento["id"]);
-            $result->bindParam(3,$arrayEvento["title"]);
-            $result->bindParam(4,$arrayEvento["description"]);
-            $result->bindParam(5,$arrayEvento["date"]);
+            $result->bindParam(1, $arrayEvento["id_user"]);
+            $result->bindParam(2, $arrayEvento["id"]);
+            $result->bindParam(3, $arrayEvento["title"]);
+            $result->bindParam(4, $arrayEvento["description"]);
+            $result->bindParam(5, $arrayEvento["date"]);
             return $result->execute();
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . 'En (Model:setEventsExpireTomorrow)' . PHP_EOL, 3, "logException.txt");

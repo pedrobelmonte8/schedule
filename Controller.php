@@ -236,7 +236,7 @@ class Controller
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
         }
         require 'templates/notifications.php';
-        include 'scripts/cronJob.php';
+        /* include 'scripts/cronJob2.php'; */
     }
 
     public function changePassword()
@@ -252,6 +252,22 @@ class Controller
         }
         require 'templates/changepassword.php';
     }
+
+    public function cambiarContraseña()
+    {
+        try {
+            $oldPass = $_POST["oldPass"];
+            $newPass = $_POST["newPass"];
+            $m = new Model();
+            $resultado = $m->cambiarContraseña($oldPass, $newPass, $_SESSION["id"]);
+            echo json_encode($resultado);
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
+    }
+
     public function nuevoEvento()
     {
         try {
@@ -319,7 +335,7 @@ class Controller
             $session = new Sesiones;
             $session->caduca();
             $m = new Model();
-           /* Código para que funcione la subida de archivos, no he conseguido hacerlo, existe un problema , pero no se localizarlo, supongo que será tema del Ajax o Cliente-Servidor */
+            /* Código para que funcione la subida de archivos, no he conseguido hacerlo, existe un problema , pero no se localizarlo, supongo que será tema del Ajax o Cliente-Servidor */
             /* $errores = [];
              if ($_POST["img"] == 0) {
                 $datos = $m->setInfoUsuario($_SESSION["id"], $_POST["user"], $_POST["email"], $_POST["notEmail"]);
@@ -336,7 +352,7 @@ class Controller
                 }
             } */
             $datos = $m->setInfoUsuario($_SESSION["id"], $_POST["user"], $_POST["email"], $_POST["notEmail"]);
-            if($datos){
+            if ($datos) {
                 $session->cambioDatosDeSesion($_POST["user"]);
             }
             echo json_encode($datos);
