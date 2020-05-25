@@ -67,11 +67,20 @@ body {
 
 .card-signin .card-body {
   padding: 2rem;
+  min-height: 800px;
 }
 
 li {
   background-color: ghostwhite !important;
   border-radius: 5px !important;
+  cursor: pointer;
+}
+
+li .divTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0px;
 }
 
 #errores .error {

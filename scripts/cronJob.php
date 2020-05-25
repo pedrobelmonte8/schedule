@@ -102,5 +102,5 @@ print_r($usuarios);
 $eventos = getEventsExpireTomorrow();
 setEventsExpireTomorrow($eventos);
 /* print_r($eventos[1]); */
-enviamosSpam(1);
+/* enviamosSpam(1); */
 echo "hey";

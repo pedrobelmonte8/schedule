@@ -229,13 +229,17 @@ class Controller
     {
         try {
             $params = array(
-                'notificaciones' => array()
+                'notificaciones' => ""
             );
             $session = new Sesiones;
             $session->caduca();
-            $m=new Model();
-            print_r($m->getNotificaciones($_SESSION["id"]));
-            $params["notificaciones"];
+            $m = new Model();
+            $array_notificaciones = $m->getNotificaciones($_SESSION["id"]);
+            foreach ($array_notificaciones as $notificaciones => $notificacion) {
+                $params["notificaciones"] .= '<li data-id="' . $notificacion["id"] . '" class="list-group-item"><div class="d-flex justify-content-between"><p class="divTitle">' . $notificacion["title"] . '</p><div>' . $notificacion["date"] . ' <i class="fas fa-trash-alt iconoEliminar"></i></div></div></li>
+                ';
+            }
+            /* echo $params["notificaciones"];  */
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
         } catch (Error $e) {
@@ -243,6 +247,20 @@ class Controller
         }
         require 'templates/notifications.php';
         /* include 'scripts/cronJob2.php'; */
+    }
+    public function eliminarNotificacion()
+    {
+        try {
+            $session = new Sesiones;
+            $session->caduca();
+            $m = new Model();
+            $id = $_POST["id"];
+            echo $m->eliminarNotificacion($id) ? json_encode(true) : json_encode(false);
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
     }
 
     public function changePassword()

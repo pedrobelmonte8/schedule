@@ -26,15 +26,15 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="card card-signin my-5">
-                    <div class="card-body">
+                    <div class="card-body cuerpoNotificaciones">
                         <h5 class="card-title text-center">Notificaciones</h5>
                         <!-- Listas -->
                         <ul class="list-group list-group-flush">
-                            <li data-id="" class="list-group-item"><div class="d-flex justify-content-between"><div>Título</div><div>22-05-2020 <i class="fas fa-trash-alt"></i></div></div></li>
+                           <!--  <li data-id="" class="list-group-item"><div class="d-flex justify-content-between"><div>Título</div><div>22-05-2020 <i class="fas fa-trash-alt"></i></div></div></li>
                             <li data-id="" class="list-group-item"><div class="d-flex justify-content-between"><div>Título</div><div>23-05-2020 <i class="fas fa-trash-alt"></i></div></div></li>
                             <li data-id="" class="list-group-item"><div class="d-flex justify-content-between"><div>Título</div><div>22-05-2020 <i class="fas fa-trash-alt"></i></div></div></li>
                             <li data-id="" class="list-group-item"><div class="d-flex justify-content-between"><div>Título</div><div>23-05-2020 <i class="fas fa-trash-alt"></i></div></div></li>
-                            <?php echo isset($params["notificaticiones"]) ? $params["notificaticiones"] : "No hay notificaciones" ?>
+                            --> <?php echo isset($params["notificaciones"]) ? $params["notificaciones"] : "No hay notificaciones" ?>
                         </ul>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+        <script src="scripts/notifications.js"></script>
 </body>
 
 </html>

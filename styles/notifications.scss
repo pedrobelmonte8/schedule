@@ -64,12 +64,20 @@ body {
     }
     .card-body {
         padding: 2rem;
+        min-height: 800px;
     }
 }
 
 li {
     background-color: ghostwhite !important;
     border-radius: 5px !important;
+    cursor: pointer;
+    .divTitle {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0px;
+    }
 }
 
 #errores {

@@ -220,7 +220,7 @@ class Model extends PDO
     public function getNotificaciones($id)
     {
         try {
-            $consulta = "SELECT id,title,date FROM notifications WHERE id=$id order by date desc";
+            $consulta = "SELECT id,title,date FROM notifications WHERE id_user=$id order by date desc";
             $result = $this->conexion->query($consulta);
             return $result->fetchAll();
         } catch (Exception $e) {
@@ -236,7 +236,10 @@ class Model extends PDO
         try {
             $consulta = "DELETE FROM notifications WHERE id=$id";
             $result = $this->conexion->query($consulta);
-            return $result->fetchAll();
+            if ($result->rowCount() == 1) {
+                return true;
+            } else
+                return false;
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logException.txt");
             return false;
@@ -287,10 +290,15 @@ class Model extends PDO
             $result->bindParam(5, $arrayEvento["date"]);
             return $result->execute();
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:setEventsExpireTomorrow)' . PHP_EOL, 3, "logException.txt");
-            return false;
+            //Queremos evitar saturar el log de Errores, si el error es de Indice duplicado no escribimos error en el Log
+            if (!$e->getCode() == 23000) {
+                error_log($e->getMessage() . $e->getCode() . microtime() . 'En (Model:setEventsExpireTomorrow)' . PHP_EOL, 3, "logException.txt");
+                return false;
+            } else {
+                return false;
+            }
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:setEventsExpireTomorrow)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
