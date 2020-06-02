@@ -16,13 +16,61 @@ $(document).ready(() => {
     $("#buttonLogOut").click(function() {
         LogOut();
     });
-
+    //Funciones para el funcionamiento del contenedor de Busqueda
+    $("#search").submit(function() {
+        let texto = $.trim($("#textSearch").val());
+        console.log(texto);
+        if (texto == "") {
+            alert("El campo no puede estar vacío");
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "index.php",
+                data: {
+                    "ctl": "buscarEvento",
+                    "texto": texto
+                },
+                success: function(data) {
+                    let datos = JSON.parse(data);
+                    let lista = $("#searchList");
+                    if (datos) {
+                        //Si devuelve uno significa que no existen resultados que coincidan
+                        if (datos == 1) {
+                            lista.empty();
+                            lista.append("<p>Ninguna entrada coincide con la busqueda</p>");
+                        } else {
+                            //Vacio la lista
+                            lista.empty();
+                            for (let i = 0; i < datos.length; i++) {
+                                lista.append("<li class='elementList' data-date='" + datos[i]["date"] + "' data-id='" + datos[i]["id"] + "'>" + datos[i]["date"] + " " + datos[i]["title"] + "</li>");
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        return false;
+    });
+    $("#searchList").on("click", ".elementList", function() {
+        let id = $(this).attr("data-id");
+        let date = $(this).attr("data-date");
+        let particion = date.split(" ");
+        let nextDate = new Date(particion[0]);
+        particion[0] = particion[0].split("-").reverse().join("-");
+        $("#actualDate").text(particion[0]);
+        nextDate.setDate(nextDate.getDate() + 1);
+        console.log(nextDate);
+        //Falta formatear fecha
+        let fechaFormateada = nextDate.getDate().toString().padStart(2, "0") + "-" + (nextDate.getMonth() + 1).toString().padStart(2, "0") + "-" + nextDate.getFullYear().toString();
+        console.log(fechaFormateada);
+        $("#nextDate").text(fechaFormateada);
+        actualizarListas();
+    });
     //Al clickar en cruz para crear nuevo Evento...
     function abrirModal(modal) {
         //Abro modal
         $(modal).modal();
     }
-    //Arreglar Modal y LocalStorage
     $(".nuevoEvento").on("click", function() {
         let fechaClickada;
         if ($(this).closest("ul").attr("id") == "actualDateList") {

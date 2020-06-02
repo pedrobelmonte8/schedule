@@ -33,10 +33,17 @@
                             <div class="form-label-group">
                                 <input name="inputRepPassword" type="password" id="inputRepPassword" class="form-control" placeholder="Repita la Contraseña" required>
                             </div>
-                            <div class="form-label-group">
-                                <input name="inputFile" type="file" id="inputFile" class="form-control" placeholder="Imagen de Perfil" required>
-                            </div>
 
+                            <!-- <div class="form-label-group">
+                                <label for="formSettingsImg"><i class="fas fa-upload"></i> <span class="formSettingsImgSpan">Cambiar Imagen de Perfil</span></label>
+                                <input name="inputFile" type="file" id="inputFile" class="form-control" placeholder="Imagen de Perfil" required>
+                                <span class="formSettingsImg"></span>
+                            </div> -->
+                            <div class="form-group">
+                                <label for="formSettingsImg"><i class="fas fa-upload"></i> <span class="formSettingsImgSpan">Imagen de Perfil</span></label>
+                                <input name="inputFile" type="file" id="formSettingsImg" class="form-control" placeholder="Imagen de Perfil" required>
+                                <span class="formSettingsImg"></span>
+                            </div>
                             <button name="inputRegister" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrarse</button>
                             <a href="index.php?ctl=login" class="d-block text-center mt-2 small">Iniciar Sesión</a>
                             <!--  <hr class="my-4">

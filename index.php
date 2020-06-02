@@ -27,7 +27,9 @@ $map = array(
     'cargarDatosUsuario' => array('controller' => 'Controller', 'action' => 'cargarDatosUsuario', 'acceso' => 1),
     'cambiarDatosUsuario' => array('controller' => 'Controller', 'action' => 'cambiarDatosUsuario', 'acceso' => 1),
     'changePassword' => array('controller' => 'Controller', 'action' => 'cambiarContraseña', 'acceso' => 1),
-    'eliminarNotificacion'=> array('controller' => 'Controller', 'action' => 'eliminarNotificacion', 'acceso' => 1)
+    'eliminarNotificacion'=> array('controller' => 'Controller', 'action' => 'eliminarNotificacion', 'acceso' => 1),
+    'buscarEvento'=> array('controller' => 'Controller', 'action' => 'buscarEvento', 'acceso' => 1),
+    'buscarFecha'=> array('controller' => 'Controller', 'action' => 'buscarFecha', 'acceso' => 1)
 );
 
 if (isset($_REQUEST['ctl'])) {

@@ -78,4 +78,31 @@ body {
   -webkit-transition: all .1s ease-in-out;
   transition: all .1s ease-in-out;
 }
+
+#formSettingsImg {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+label[for="formSettingsImg"] {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #106BA0;
+  display: inline-block;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  cursor: pointer;
+  padding: 15px 40px !important;
+  text-transform: uppercase;
+  /*  width: fit-content; */
+  width: 100%;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 2rem;
+}
 /*# sourceMappingURL=registry.css.map */

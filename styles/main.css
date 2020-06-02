@@ -99,11 +99,6 @@ body {
   color: red;
 }
 
-.hoja1 ul .iconos .no-importante,
-.hoja2 ul .iconos .no-importante {
-  color: #00fc26;
-}
-
 .hoja1 ul i,
 .hoja2 ul i {
   margin: 5px;
@@ -149,20 +144,40 @@ body {
   border-bottom-right-radius: 1rem;
 }
 
-.details {
-  height: 500px;
-  background-color: #1e202a;
+.details::-webkit-scrollbar {
+  display: none;
 }
 
-.details #details .details-save {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.details {
+  height: 800px;
+  background-color: #1e202a;
+  overflow: scroll;
+}
+
+.details ul {
+  font-family: 'Handlee', cursive;
+  font-size: 1.2rem;
+  overflow: hidden;
+}
+
+.details ul li {
+  color: white;
+  list-style: none;
+  border-bottom: 1px solid white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.details ul p {
+  color: white;
 }
 
 /* Flechas de cambio de días */
 .next-last {
-  font-size: 60px;
+  font-size: 30px;
+  color: white;
   cursor: pointer;
 }
 /*# sourceMappingURL=main.css.map */

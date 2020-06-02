@@ -126,3 +126,8 @@ SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '15-85' fo
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '15-83' for key 'id_user'0.22056900 1590258808En (Model:setEventsExpireTomorrow)
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '15-85' for key 'id_user'0.32192300 1590258808En (Model:setEventsExpireTomorrow)
 SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE id=15' at line 10.64124200 1590349491En (Model:intentaRegistro)
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PedroBelmonte' for key 'name'0.86701400 1591121666En (Model:intentaRegistro)
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PedroBelmonte' for key 'name'0.66159600 1591121691En (Model:intentaRegistro)
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PedroBelmonte' for key 'name'0.51397200 1591121692En (Model:intentaRegistro)
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PedroBelmonte' for key 'name'0.14834400 1591121693En (Model:intentaRegistro)
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PedroBelmonte' for key 'name'0.18377800 1591121694En (Model:intentaRegistro)

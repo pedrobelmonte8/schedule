@@ -61,7 +61,7 @@ $(document).ready(() => {
             return false;
         } else if (!nombreUser.match(/^[a-z0-9][a-z0-9_\-@]{4,19}$/i)) {
             flag = false;
-            alert("El usuario estará comprendido entre 5 y 20 caracteres, comenzando por una letra o un dígito (-, @, y _ están permitidos)");
+            alert("El usuario estará comprendido entre 5 y 20 caracteres, sin espacios, comenzando por una letra o un dígito (-, @, y _ están permitidos)");
             return false;
         } else if (!email.match(/^[a-z]+([\.]?[a-z0-9_-]+)*@[a-z]+([\.-]+[a-z0-9]+)*\.[a-z]{2,}$/)) {
             flag = false;

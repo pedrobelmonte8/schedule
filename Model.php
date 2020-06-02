@@ -20,10 +20,10 @@ class Model extends PDO
             $result = $this->conexion->query($consulta);
             return $result->fetch();
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:dameInfoUsuario)' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:dameInfoUsuario)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
@@ -34,10 +34,10 @@ class Model extends PDO
             $result = $this->conexion->query($consulta);
             return $result->rowCount();
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:setInfoUsuario)' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:setInfoUsuario)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
@@ -48,10 +48,10 @@ class Model extends PDO
             $result = $this->conexion->query($consulta);
             return $result->fetchAll();
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:dameEventos)' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:dameEventos)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
@@ -62,10 +62,10 @@ class Model extends PDO
             $result = $this->conexion->query($consulta);
             return $result->fetch();
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:dameInfoEvento)' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:dameInfoEvento)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
@@ -85,10 +85,10 @@ class Model extends PDO
             $result = $this->conexion->query($consulta);
             return $result->rowCount();
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:modificarEvento)' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model)' . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:modificarEvento)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
@@ -109,10 +109,10 @@ class Model extends PDO
                 return false;
             }
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:nuevoEvento)' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:nuevoEvento)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
@@ -129,13 +129,31 @@ class Model extends PDO
                 return false;
             }
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:eliminarEvento)' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:eliminarEvento)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
+    public function buscarEvento($id, $texto)
+    {
+        try {
+            $consulta = "select id, title, date FROM event WHERE id_user='$id' and title like '%$texto%' ORDER BY date desc";
+            $result = $this->conexion->query($consulta);
+            if($result->rowCount()==0){
+                return 1;
+            }
+            return $result->fetchAll();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:buscarEvento)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:buscarEvento)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
+
     //Funciones relacionadas al registro
     public function intentaRegistro($name, $pass, $email, $img)
     {
@@ -174,10 +192,10 @@ class Model extends PDO
             $result->execute();
             return $result->fetchAll();
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'Consulta: ' . $consulta . '' . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaLogin):  ' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaLogin)'. PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
@@ -209,10 +227,10 @@ class Model extends PDO
             /*  $result->bindParam(':old', $old);
             $result->bindParam(':new', $new); */
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'Consulta: ' . $consulta . '' . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:cambiarContraseña)' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:cambiarContraseña)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
@@ -241,10 +259,10 @@ class Model extends PDO
             } else
                 return false;
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:eliminarNotificacion)' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:eliminarNotificacion)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
@@ -256,10 +274,10 @@ class Model extends PDO
             $result = $this->conexion->query($consulta);
             return $result->fetchAll();
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:getUsersNotEmail)' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:intentaRegistro)' . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:getUsersNotEmail)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }

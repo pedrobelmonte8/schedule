@@ -83,9 +83,6 @@ body {
             .importante {
                 color: red;
             }
-            .no-importante {
-                color: rgb(0, 252, 38);
-            }
         }
         i {
             margin: 5px;
@@ -121,12 +118,29 @@ body {
     border-bottom-right-radius: 1rem;
 }
 
+.details::-webkit-scrollbar {
+    display: none;
+}
+
 .details {
-    height: 500px;
+    height: 800px;
     background-color: rgb(30, 32, 42);
-    #details {
-        .details-save {
-            justify-content: space-between;
+    overflow: scroll;
+    ul {
+        font-family: 'Handlee', cursive;
+        font-size: 1.2rem;
+        overflow: hidden;
+        li {
+            color: white;
+            list-style: none;
+            border-bottom: 1px solid white;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        p {
+            color: white;
         }
     }
 }
@@ -135,6 +149,7 @@ body {
 /* Flechas de cambio de días */
 
 .next-last {
-    font-size: 60px;
+    font-size: 30px;
+    color: white;
     cursor: pointer;
 }

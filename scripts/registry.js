@@ -1,4 +1,11 @@
 $(document).ready(() => {
+    /* Código para que funcione correctamente los estilo del Input de la imagen */
+    $('input[type=file]').change(function() {
+        var filename = jQuery(this).val().split('\\').pop();
+        var idname = jQuery(this).attr('id');
+        $('span.' + idname).next().find('span').html(filename);
+        $('.formSettingsImgSpan').html(filename);
+    });
     $('#form_register').submit(function(e) {
         let name = $('#inputName').val();
         let email = $('#inputEmail').val();
@@ -11,7 +18,7 @@ $(document).ready(() => {
         } else {
             //Formato del Nombre de Usuario
             if (!name.match(/^[a-z0-9][a-z0-9_\-@]{4,19}$/i)) {
-                errores.push("<div class='error'><p><i class='fa fa-times-circle'></i>El usuario estará comprendido entre 5 y 20 caracteres, comenzando por una letra o un dígito (-, @, y _ están permitidos).</div>");
+                errores.push("<div class='error'><p><i class='fa fa-times-circle'></i>El usuario estará comprendido entre 5 y 20 caracteres, sin espacios, comenzando por una letra o un dígito (-, @, y _ están permitidos).</div>");
             }
             //Formato del Email
             if (!email.match(/^[a-z]+([\.]?[a-z0-9_-]+)*@[a-z]+([\.-]+[a-z0-9]+)*\.[a-z]{2,}$/)) {

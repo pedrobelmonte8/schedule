@@ -142,7 +142,7 @@ class Validacion
         if (preg_match("/^[a-z0-9][a-z0-9_\-@]{4,19}$/i", $valor)) {
             return true;
         } else {
-            $this->mensaje[$campo][] = "El usuario estará comprendido entre 5 y 20 caracteres, comenzando por una letra o un dígito (-, @, y _ están permitidos).";
+            $this->mensaje[$campo][] = "El usuario estará comprendido entre 5 y 20 caracteres, sin espacios, comenzando por una letra o un dígito (-, @, y _ están permitidos).";
             return false;
         }
     }

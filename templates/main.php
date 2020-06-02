@@ -17,7 +17,8 @@
 <body>
     <!-- Cabecera -->
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php?ctl=main">Organízate</a>
+       <div class="next-last"> <a class="navbar-brand" href="index.php?ctl=main">Organízate</a> <i class="fas fa-angle-left center" id="anterior"></i>    <i class="fas fa-angle-right center" id="siguiente"></i></div>
+
         <div class="contDatos">
             <img src="<?php echo isset($_SESSION['img']) ? $_SESSION["img"] : "" ?>" alt="">
             <h3 class="text-light m-3"> <?php echo isset($_SESSION['user']) ? $_SESSION['user'] : "" ?></h3>
@@ -110,20 +111,30 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
+            <!--  <div class="row next-last">
+                <div class="ml-4 col-sm-4 d-flex justify-content-start">
+                    <i class="fas fa-angle-left center" id="anterior"></i>
+                </div>
+                <div class="ml-4 col-sm-4 d-flex justify-content-end">
+                    <i class="fas fa-angle-right center" id="siguiente"></i>
+                </div>
+            </div> -->
             <!-- Inicio Tarjeta 1 -->
-            <div class="col-sm-4 mt-4 ml-4 p-4 hoja1">
+            <div class=" col-11 col-md-6 col-lg-4 mt-4 ml-4 p-4 hoja1">
                 <div class="fecha1">
                     <!-- Pinto la fecha del dia actual mediente PHP -->
                     <p id="actualDate"><?php echo isset($params['actDate']) ? $params['actDate'] : "error" ?></p>
                 </div>
                 <ul id="actualDateList">
+                    
                     <i class="fas fa-plus nuevoEvento"></i>
                 </ul>
             </div>
             <!-- Final Tarjeta 1 -->
             <!-- Inicio Tarjeta 2 -->
-            <div class="col-sm-4 mt-4 ml-4 p-4 hoja2">
+            <div class="d-none d-lg-block col-lg-4 col-11 mt-4 ml-4 p-4 hoja2">
                 <div class="fecha2">
                     <p id="nextDate"><?php echo isset($params['nextDate']) ? $params['nextDate'] : "error" ?></p>
                 </div>
@@ -133,29 +144,25 @@
             </div>
             <!-- Final Tarjeta 2 -->
             <!-- Inicio Ficha Detalles -->
-            <div class="col-sm-3 mt-4 ml-4 p-4 details">
+            <div class="col-11 col-lg-3 col-md-5 mt-4 ml-4 p-4 details">
                 <!-- Empieza formulario Buscar -->
-                <form id="search" action="POST">
+                <form id="search" method="POST">
                     <div class="form-group col ">
                         <label for="formTittle" class="text-light">Buscar eventos</label>
-                        <input class="form-control" type="text" name="" id="formTittle">
+                        <input class="form-control" type="text" id="textSearch">
                     </div>
                     <div class="form-group col ">
-                        <input class="btn btn-info" type="button" value="Buscar">
+                        <input class="btn btn-info" type="submit">
                     </div>
                 </form>
-                <div class="row"></div>
+                <div class="col ">
+                    <ul id="searchList">
+                    </ul>
+                </div>
             </div>
             <!-- Final Ficha Detalles -->
         </div>
-        <div class="row next-last">
-            <div class="ml-4 col-sm-4 d-flex justify-content-start">
-                <i class="fas fa-angle-left center" id="anterior"></i>
-            </div>
-            <div class="ml-4 col-sm-4 d-flex justify-content-end">
-                <i class="fas fa-angle-right center" id="siguiente"></i>
-            </div>
-        </div>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

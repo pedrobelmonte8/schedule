@@ -326,6 +326,21 @@ class Controller
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
         }
     }
+    public function buscarEvento()
+    {
+        try {
+            $session = new Sesiones;
+            $session->caduca();
+            $id = $_SESSION["id"];
+            $texto = $_POST["texto"];
+            $m = new Model();
+            echo json_encode($m->buscarEvento($id, $texto));
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Controller)' . PHP_EOL, 3, "logException.txt");
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+        }
+    }
     public function configuracion()
     {
         try {
