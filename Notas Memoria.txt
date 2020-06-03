@@ -1,5 +1,0 @@
-FORMATO REGISTRO
-
-Nombre: 5-20 Letras, dígitos y simbolos
-Email:
-pass:8-21 Letras, dígitos y simbolos.

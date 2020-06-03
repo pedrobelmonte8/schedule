@@ -141,7 +141,7 @@ class Model extends PDO
         try {
             $consulta = "select id, title, date FROM event WHERE id_user='$id' and title like '%$texto%' ORDER BY date desc";
             $result = $this->conexion->query($consulta);
-            if($result->rowCount()==0){
+            if ($result->rowCount() == 0) {
                 return 1;
             }
             return $result->fetchAll();
@@ -195,7 +195,7 @@ class Model extends PDO
             error_log($e->getMessage() . microtime() . 'En (Model:intentaLogin):  ' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:intentaLogin)'. PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:intentaLogin)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
@@ -270,7 +270,7 @@ class Model extends PDO
     public function getUsersNotEmail()
     {
         try {
-            $consulta = "SELECT id FROM users WHERE not_email=1";
+            $consulta = "SELECT id, email, name FROM users WHERE not_email=1";
             $result = $this->conexion->query($consulta);
             return $result->fetchAll();
         } catch (Exception $e) {
@@ -288,10 +288,24 @@ class Model extends PDO
             $result = $this->conexion->query($consulta);
             return $result->fetchAll();
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:setEventsExpireTomorrow)' . PHP_EOL, 3, "logException.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:getEventsExpireTomorrow)' . PHP_EOL, 3, "logException.txt");
             return false;
         } catch (Error $e) {
-            error_log($e->getMessage() . microtime() . 'En (Model:setEventsExpireTomorrow)' . PHP_EOL, 3, "logError.txt");
+            error_log($e->getMessage() . microtime() . 'En (Model:getEventsExpireTomorrow)' . PHP_EOL, 3, "logError.txt");
+            return false;
+        }
+    }
+    public function getNotificationsExpireTomorrow($date, $user)
+    {
+        try {
+            $consulta = "SELECT title, date FROM notifications WHERE date like '%$date%' and id_user=$user";
+            $result = $this->conexion->query($consulta);
+            return $result->fetchAll();
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:getNotificationsExpireTomorrow)' . PHP_EOL, 3, "logException.txt");
+            return false;
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . 'En (Model:getNotificationsExpireTomorrow)' . PHP_EOL, 3, "logError.txt");
             return false;
         }
     }
