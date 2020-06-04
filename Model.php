@@ -238,7 +238,7 @@ class Model extends PDO
     public function getNotificaciones($id)
     {
         try {
-            $consulta = "SELECT id,title,date FROM notifications WHERE id_user=$id order by date desc";
+            $consulta = "SELECT id,title,date FROM notifications WHERE id_user=$id order by date";
             $result = $this->conexion->query($consulta);
             return $result->fetchAll();
         } catch (Exception $e) {
@@ -298,7 +298,7 @@ class Model extends PDO
     public function getNotificationsExpireTomorrow($date, $user)
     {
         try {
-            $consulta = "SELECT title, date FROM notifications WHERE date like '%$date%' and id_user=$user";
+            $consulta = "SELECT title, date, DATE_FORMAT(date,'%H:%i') FROM notifications WHERE date like '%$date%' and id_user=$user ORDER BY date DESC";
             $result = $this->conexion->query($consulta);
             return $result->fetchAll();
         } catch (Exception $e) {

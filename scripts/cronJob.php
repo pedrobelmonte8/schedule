@@ -72,11 +72,16 @@ function enviamosSpam($arrayUsuarios)
         //Configuracion servidor mail
         $mail->From = "schedulegroupss@gmail.com"; //remitente
         $mail->SMTPAuth = true;
+        $mail->ContentType = "text/html";
         $mail->SMTPSecure = 'tls'; //seguridad
         $mail->Host = "smtp.gmail.com"; // servidor smtp
         $mail->Port = 587; //puerto
         $mail->Username = 'schedulegroupss@gmail.com'; //nombre usuario
         $mail->Password = 'AdministradorAbastos'; //contraseña
+        /* $mail->setFrom("Equipo técnico de Organízate"); */
+        $mail->FromName = "Equipo técnico de Organízate";
+        $mail->setLanguage("es", "../vendor/phpmailer/phpmailer/language/");
+        $mail->CharSet = "UTF-8";
         foreach ($arrayUsuarios as $array => $usuarios) {
             $emailDestino = $usuarios["email"];
             $usuario = $usuarios["name"];
@@ -88,17 +93,20 @@ function enviamosSpam($arrayUsuarios)
             foreach ($arrayNotificaciones as $array => $notificacion) {
                 echo "<br>Evento: ";
                 print_r($notificacion);
-                $cuerpo .= $notificacion["title"] . "<br>";
+                $cuerpo .= "<li>" . "$notificacion[2] " . $notificacion["title"] . "</li>";
             }
             /*  echo "<br>Notificaciones: ";
             print_r($arrayNotificaciones); */
             //Agregar destinatario
+            $mail->clearAddresses();
             $mail->AddAddress($emailDestino);
             //CUERPO DEL MENSAJE
             $mail->Subject = "¡Hey $usuario, mañana tienes cosas que hacer!";
-            $mail->Body = $cuerpo;
+
             echo "<br>Cuerpo del mensaje: <br>$cuerpo";
             if ($cuerpo != "") {
+                $cuerpo = "<h4>Estas son algunas de tus citas para mañana:</h4><ul>" . $cuerpo . "</ul>";
+                $mail->Body = $cuerpo;
                 if ($mail->Send()) {
                     echo "<br> Exito $emailDestino <br>";
                     error_log("Se ha enviado el correo correctamente" . date("Y-m-d H:i:s") . PHP_EOL, 3, "logErrorCron.txt");
@@ -108,7 +116,7 @@ function enviamosSpam($arrayUsuarios)
                     //error_log($mail . PHP_EOL, 3, "logErrorCron.txt");
                     // print_r($mail); 
                 }
-            }else{
+            } else {
                 echo "No hay contenido que envíar";
             }
         }
