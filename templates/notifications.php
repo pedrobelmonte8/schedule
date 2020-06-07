@@ -15,8 +15,8 @@
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="index.php?ctl=main">Organízate</a>
         <div class="contDatos">
-            <img src="<?php echo isset($_SESSION['img']) ? $_SESSION["img"] : "" ?>" alt="">
-            <h3 class="text-light m-3"> <?php echo isset($_SESSION['user']) ? $_SESSION['user'] : "" ?></h3>
+            <img class="d-none d-lg-block" src="<?php echo isset($_SESSION['img']) ? $_SESSION["img"] : "" ?>" alt="">
+            <h3 class="text-light m-3 d-none d-lg-block"> <?php echo isset($_SESSION['user']) ? $_SESSION['user'] : "" ?></h3>
             <a href="index.php?ctl=notificaciones"><i class="fas fa-bell iconSettings iNoti"></i></a>
             <a href="index.php?ctl=configuracion"> <i class="fas fa-cog iconSettings iConf"></i></a>
             <i id="buttonLogOut" class="fas fa-sign-out-alt iconSettings"></i>
@@ -30,7 +30,7 @@
                         <h5 class="card-title text-center">Notificaciones</h5>
                         <!-- Listas -->
                         <ul class="list-group list-group-flush">
-                           <!--  <li data-id="" class="list-group-item"><div class="d-flex justify-content-between"><div>Título</div><div>22-05-2020 <i class="fas fa-trash-alt"></i></div></div></li>
+                            <!--  <li data-id="" class="list-group-item"><div class="d-flex justify-content-between"><div>Título</div><div>22-05-2020 <i class="fas fa-trash-alt"></i></div></div></li>
                             <li data-id="" class="list-group-item"><div class="d-flex justify-content-between"><div>Título</div><div>23-05-2020 <i class="fas fa-trash-alt"></i></div></div></li>
                             <li data-id="" class="list-group-item"><div class="d-flex justify-content-between"><div>Título</div><div>22-05-2020 <i class="fas fa-trash-alt"></i></div></div></li>
                             <li data-id="" class="list-group-item"><div class="d-flex justify-content-between"><div>Título</div><div>23-05-2020 <i class="fas fa-trash-alt"></i></div></div></li>

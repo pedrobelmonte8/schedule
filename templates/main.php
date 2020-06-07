@@ -17,11 +17,13 @@
 <body>
     <!-- Cabecera -->
     <nav class="navbar navbar-dark bg-dark">
-       <div class="next-last"> <a class="navbar-brand" href="index.php?ctl=main">Organízate</a> <i class="fas fa-angle-left center" id="anterior"></i>    <i class="fas fa-angle-right center" id="siguiente"></i></div>
-
+        <div class="next-last">
+            <a class="navbar-brand" href="index.php?ctl=main">Organízate</a>
+            <i class="fas fa-angle-left center" id="anterior"></i> <i class="fas fa-angle-right center" id="siguiente"></i>
+        </div>
         <div class="contDatos">
-            <img src="<?php echo isset($_SESSION['img']) ? $_SESSION["img"] : "" ?>" alt="">
-            <h3 class="text-light m-3"> <?php echo isset($_SESSION['user']) ? $_SESSION['user'] : "" ?></h3>
+            <img class="d-none d-lg-block" src="<?php echo isset($_SESSION['img']) ? $_SESSION["img"] : "" ?>" alt="">
+            <h3 class="d-none d-lg-block text-light m-3"> <?php echo isset($_SESSION['user']) ? $_SESSION['user'] : "" ?></h3>
             <a href="index.php?ctl=notificaciones"><i class="fas fa-bell iconSettings iNoti"></i></a>
             <a href="index.php?ctl=configuracion"> <i class="fas fa-cog iconSettings iConf"></i></a>
             <i id="buttonLogOut" class="fas fa-sign-out-alt iconSettings"></i>
@@ -128,7 +130,7 @@
                     <p id="actualDate"><?php echo isset($params['actDate']) ? $params['actDate'] : "error" ?></p>
                 </div>
                 <ul id="actualDateList">
-                    
+
                     <i class="fas fa-plus nuevoEvento"></i>
                 </ul>
             </div>

@@ -16,8 +16,8 @@
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="index.php?ctl=main">Organízate</a>
         <div class="contDatos">
-            <img src="<?php echo isset($_SESSION['img']) ? $_SESSION["img"] : "" ?>" alt="">
-            <h3 class="text-light m-3"> <?php echo isset($_SESSION['user']) ? $_SESSION['user'] : "" ?></h3>
+            <img class="d-none d-lg-block" src="<?php echo isset($_SESSION['img']) ? $_SESSION["img"] : "" ?>" alt="">
+            <h3 class="text-light m-3 d-none d-lg-block"> <?php echo isset($_SESSION['user']) ? $_SESSION['user'] : "" ?></h3>
             <a href="index.php?ctl=notificaciones"><i class="fas fa-bell iconSettings iNoti"></i></a>
             <a href="index.php?ctl=configuracion"> <i class="fas fa-cog iconSettings iConf"></i></a>
             <i id="buttonLogOut" class="fas fa-sign-out-alt iconSettings"></i>
